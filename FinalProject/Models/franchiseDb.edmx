@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="franchiseDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Crimes">
+          <Key>
+            <PropertyRef Name="State" />
+          </Key>
+          <Property Name="State" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Population" Type="float" Nullable="false" />
+          <Property Name="Violent_Crime" Type="float" Nullable="false" />
+          <Property Name="Homicide" Type="float" Nullable="false" />
+          <Property Name="Rape_Revised" Type="float" Nullable="false" />
+          <Property Name="Robbery" Type="float" Nullable="false" />
+          <Property Name="Aggravated_Assault" Type="float" Nullable="false" />
+          <Property Name="Property_Crime" Type="float" Nullable="false" />
+          <Property Name="Burglary" Type="float" Nullable="false" />
+          <Property Name="Larceny" Type="float" Nullable="false" />
+          <Property Name="Motor_Vehicle_Theft" Type="float" Nullable="false" />
+          <Property Name="Arson" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cost" Type="money" Nullable="false" />
+          <Property Name="Availability" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Mentors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Personality" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Ability1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ability2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Hero/Villain" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="franchiseDbModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Crimes" EntityType="Self.Crimes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mentors" EntityType="Self.Mentors" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="franchiseDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Crime">
+          <Key>
+            <PropertyRef Name="State" />
+          </Key>
+          <Property Name="State" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Population" Type="Double" Nullable="false" />
+          <Property Name="Violent_Crime" Type="Double" Nullable="false" />
+          <Property Name="Homicide" Type="Double" Nullable="false" />
+          <Property Name="Rape_Revised" Type="Double" Nullable="false" />
+          <Property Name="Robbery" Type="Double" Nullable="false" />
+          <Property Name="Aggravated_Assault" Type="Double" Nullable="false" />
+          <Property Name="Property_Crime" Type="Double" Nullable="false" />
+          <Property Name="Burglary" Type="Double" Nullable="false" />
+          <Property Name="Larceny" Type="Double" Nullable="false" />
+          <Property Name="Motor_Vehicle_Theft" Type="Double" Nullable="false" />
+          <Property Name="Arson" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Availability" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Mentor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Personality" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ability1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ability2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hero_Villain" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="franchiseDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Crimes" EntityType="Self.Crime" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Mentors" EntityType="Self.Mentor" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="franchiseDbModelStoreContainer" CdmEntityContainer="franchiseDbEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="franchiseDbModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Crimes">
+            <EntityTypeMapping TypeName="franchiseDbModel.Crime">
+              <MappingFragment StoreEntitySet="Crimes">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="Violent_Crime" ColumnName="Violent_Crime" />
+                <ScalarProperty Name="Homicide" ColumnName="Homicide" />
+                <ScalarProperty Name="Rape_Revised" ColumnName="Rape_Revised" />
+                <ScalarProperty Name="Robbery" ColumnName="Robbery" />
+                <ScalarProperty Name="Aggravated_Assault" ColumnName="Aggravated_Assault" />
+                <ScalarProperty Name="Property_Crime" ColumnName="Property_Crime" />
+                <ScalarProperty Name="Burglary" ColumnName="Burglary" />
+                <ScalarProperty Name="Larceny" ColumnName="Larceny" />
+                <ScalarProperty Name="Motor_Vehicle_Theft" ColumnName="Motor_Vehicle_Theft" />
+                <ScalarProperty Name="Arson" ColumnName="Arson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="franchiseDbModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mentors">
+            <EntityTypeMapping TypeName="franchiseDbModel.Mentor">
+              <MappingFragment StoreEntitySet="Mentors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Personality" ColumnName="Personality" />
+                <ScalarProperty Name="Ability1" ColumnName="Ability1" />
+                <ScalarProperty Name="Ability2" ColumnName="Ability2" />
+                <ScalarProperty Name="Hero_Villain" ColumnName="Hero/Villain" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
