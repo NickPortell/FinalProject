@@ -1,8 +1,21 @@
-﻿
+﻿@using FinalProject.Models
+
+
 @{
     ViewBag.Title = "UserInfo";
 }
 
-<h2>UserInfo</h2>
-
-<p></p>
+<h2>User Info</h2>
+<div class="col-md-3" id="ProductBox">
+    <h3>Supername: @Model.UserName</h3>
+    <p>Superpower: @Model.SuperPower</p>
+    @if (Model.C_Hero_Villain_ == true)
+    {
+        <p>Hero/Villain: Hero</p>
+    }
+    else
+    {
+        <p>Hero/Villain: Villain</p>
+    }
+    <p>Mentor: @Model.Mentor</p>
+</div>
