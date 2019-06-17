@@ -176,6 +176,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>franchiseDb.tt</DependentUpon>
     </Compile>
@@ -188,6 +189,7 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>franchiseDb.tt</DependentUpon>
     </Compile>
+
     <Compile Include="Models\Crime.cs">
       <DependentUpon>franchiseDb.tt</DependentUpon>
     </Compile>

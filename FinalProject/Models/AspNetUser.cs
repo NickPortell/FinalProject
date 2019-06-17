@@ -14,6 +14,7 @@ namespace FinalProject.Models
     
     public partial class AspNetUser
     {
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AspNetUser()
         {
@@ -23,6 +24,7 @@ namespace FinalProject.Models
             this.AspNetRoles = new HashSet<AspNetRole>();
         }
     
+
         public string Id { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
@@ -51,5 +53,6 @@ namespace FinalProject.Models
         public virtual ICollection<UserItem> UserItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+
     }
 }

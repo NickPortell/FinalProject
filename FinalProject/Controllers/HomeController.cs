@@ -21,6 +21,7 @@ namespace FinalProject.Controllers
 
         public ActionResult UserInfo()
         {
+            var userId = User.Identity.GetUserId();
             return View();
         }
 

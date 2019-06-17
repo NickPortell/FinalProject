@@ -15,6 +15,7 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
+
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -49,6 +50,7 @@
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
+
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
@@ -109,6 +111,7 @@
           <Property Name="Ability2" Type="nvarchar" MaxLength="50" />
           <Property Name="Hero/Villain" Type="bit" Nullable="false" />
         </EntityType>
+
         <EntityType Name="UserItems">
           <Key>
             <PropertyRef Name="UserItemId" />
@@ -198,6 +201,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
         <Association Name="FK_Mentor">
           <End Role="Mentors" Type="Self.Mentors" Multiplicity="1" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -212,14 +216,18 @@
         </Association>
         <EntityContainer Name="franchiseDbModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Crimes" EntityType="Self.Crimes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mentors" EntityType="Self.Mentors" Schema="dbo" store:Type="Tables" />
+
+
           <EntitySet Name="UserItems" EntityType="Self.UserItems" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__UserItems__ItemI__66603565" Association="Self.FK__UserItems__ItemI__66603565">
             <End Role="Items" EntitySet="Items" />
@@ -245,6 +253,7 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+
           <AssociationSet Name="FK_Mentor" Association="Self.FK_Mentor">
             <End Role="Mentors" EntitySet="Mentors" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -310,6 +319,7 @@
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Mentors" EntityType="Self.Mentor" />
 
+
           <EntitySet Name="AspNetRoles" EntityType="franchiseDbModel.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="franchiseDbModel.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="franchiseDbModel.AspNetUserLogin" />
@@ -328,6 +338,7 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="UserItem" EntitySet="UserItems" />
           </AssociationSet>
+
 
           <AssociationSet Name="FK_Mentor" Association="franchiseDbModel.FK_Mentor">
             <End Role="Mentor" EntitySet="Mentors" />
@@ -374,6 +385,7 @@
           <NavigationProperty Name="AspNetUser" Relationship="franchiseDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
         </EntityType>
 
+
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -395,6 +407,7 @@
           <Property Name="SuperPower" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="C_Hero_Villain_" Type="Boolean" Nullable="false" />
           <Property Name="MentorId" Type="Int32" Nullable="false" />
+
           <NavigationProperty Name="AspNetUserClaims" Relationship="franchiseDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="franchiseDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="UserItems" Relationship="franchiseDbModel.FK__UserItems__UserI__656C112C" FromRole="AspNetUser" ToRole="UserItem" />
@@ -454,6 +467,7 @@
           </ReferentialConstraint>
         </Association>
 
+
         <Association Name="FK_Mentor">
           <End Type="franchiseDbModel.Mentor" Role="Mentor" Multiplicity="1" />
           <End Type="franchiseDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
@@ -466,6 +480,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
 
         <Association Name="FK__UserItems__ItemI__66603565">
           <End Type="franchiseDbModel.Item" Role="Item" Multiplicity="1" />
@@ -483,6 +498,7 @@
           <End Type="franchiseDbModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="franchiseDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -569,6 +585,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
 
+
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="franchiseDbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
@@ -593,6 +610,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
 
+
           <EntitySetMapping Name="UserItems">
             <EntityTypeMapping TypeName="franchiseDbModel.UserItem">
               <MappingFragment StoreEntitySet="UserItems">
@@ -611,6 +629,7 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
