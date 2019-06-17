@@ -36,5 +36,12 @@ namespace FinalProject.Controllers
             List<UserItem> items = ORM.UserItems.Where(u => u.UserId == userId).ToList();
             return View(items);
         }
+
+        public ActionResult UserProfile()
+        {
+
+
+            return View();
+        }
     }
 }
