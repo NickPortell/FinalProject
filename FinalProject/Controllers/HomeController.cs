@@ -25,5 +25,16 @@ namespace FinalProject.Controllers
             return View();
         }
 
+        public ActionResult Inventory()
+        {
+            ViewBag.Title = "Inventory";
+            string userId = User.Identity.GetUserId();
+            if(userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            List<UserItem> items = ORM.UserItems.Where(u => u.UserId == userId).ToList();
+            return View(items);
+        }
     }
 }

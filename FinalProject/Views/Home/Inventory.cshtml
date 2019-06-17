@@ -1,0 +1,18 @@
+﻿@using FinalProject.Models
+<h1>@ViewBag.Title</h1>
+<br />
+<table style="width:115%">
+    <tr>
+        <th>Item</th>
+        <th>Description</th>
+        <th>Quantity</th>
+    </tr>
+    @foreach(UserItem item in Model)
+    {
+        <tr>
+            <td>@item.Item.ItemName</td>
+            <td>@item.Item.Description</td>
+            <td>@item.Quantity</td>
+        </tr>
+    }
+</table>

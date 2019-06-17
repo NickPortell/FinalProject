@@ -12,21 +12,18 @@ namespace FinalProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Item
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Item()
+        public AspNetRole()
         {
-            this.UserItems = new HashSet<UserItem>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
-        public int Id { get; set; }
-        public string ItemName { get; set; }
-        public string Description { get; set; }
-        public decimal Cost { get; set; }
-        public string Availability { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserItem> UserItems { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }
