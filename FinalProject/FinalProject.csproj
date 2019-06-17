@@ -293,6 +293,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\UserInfo.cshtml" />
     <Content Include="Views\Home\Inventory.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
