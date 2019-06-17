@@ -83,6 +83,63 @@ namespace FinalProject.Models
         }
         #endregion
 
+        #region Code used to generate Crimes-Table initially
+
+        //string[] states = { "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI",
+        //                    "ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI",
+        //                    "MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC",
+        //                    "ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT",
+        //                    "VT","VA","WA","WV","WI","WY" };
+
+        //for(int i = 0; i < states.Length; i++)
+        //{
+        //    Crime crime = new Crime(states[i]);
+        //    ORM.Crimes.Add(crime);
+        //}
+
+        //ORM.SaveChanges();
+        //List<Crime> crimeList = ORM.Crimes.ToList();
+
+        #endregion
+
+        #region Crimes Table View
+        //        <table class="table">
+        //    <tr>
+        //        <th>State</th>
+        //        <th>Population</th>
+        //        <th>Violent_Crime</th>
+        //        <th>Homicide</th>
+        //        <th>Rape_Revised</th>
+        //        <th>Robbery</th>
+        //        <th>Aggravated_Assault</th>
+        //        <th>Property_Crime</th>
+        //        <th>Burglary</th>
+        //        <th>Larceny</th>
+        //        <th>Motor_Vehicle_Theft</th>
+        //        <th>Arson</th>
+        //    </tr>
+
+        //    @foreach(var c in Model)
+        //        {
+        //        < tr >
+        //            < td > @c.State </ td >
+        //            < td > @c.Population </ td >
+        //            < td > @c.Violent_Crime </ td >
+        //            < td > @c.Homicide </ td >
+        //            < td > @c.Rape_Revised </ td >
+        //            < td > @c.Robbery </ td >
+        //            < td > @c.Aggravated_Assault </ td >
+        //            < td > @c.Property_Crime </ td >
+        //            < td > @c.Burglary </ td >
+        //            < td > @c.Larceny </ td >
+        //            < td > @c.Motor_Vehicle_Theft </ td >
+        //            < td > @c.Arson </ td >
+        //        </ tr >
+        //    }
+
+        //</table>
+        #endregion
+
     }
 
 }
