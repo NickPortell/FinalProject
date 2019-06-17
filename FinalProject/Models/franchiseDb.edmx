@@ -309,10 +309,12 @@
           <EntitySet Name="Crimes" EntityType="Self.Crime" />
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Mentors" EntityType="Self.Mentor" />
+
           <EntitySet Name="AspNetRoles" EntityType="franchiseDbModel.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="franchiseDbModel.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="franchiseDbModel.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="franchiseDbModel.AspNetUser" />
+
           <EntitySet Name="UserItems" EntityType="franchiseDbModel.UserItem" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="franchiseDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -326,10 +328,12 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="UserItem" EntitySet="UserItems" />
           </AssociationSet>
+
           <AssociationSet Name="FK_Mentor" Association="franchiseDbModel.FK_Mentor">
             <End Role="Mentor" EntitySet="Mentors" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+
           <AssociationSet Name="FK__UserItems__ItemI__66603565" Association="franchiseDbModel.FK__UserItems__ItemI__66603565">
             <End Role="Item" EntitySet="Items" />
             <End Role="UserItem" EntitySet="UserItems" />
@@ -339,6 +343,7 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
+
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -368,6 +373,7 @@
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="franchiseDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
         </EntityType>
+
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -395,6 +401,7 @@
           <NavigationProperty Name="Mentor" Relationship="franchiseDbModel.FK_Mentor" FromRole="AspNetUser" ToRole="Mentor" />
           <NavigationProperty Name="AspNetRoles" Relationship="franchiseDbModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
+
         <EntityType Name="UserItem">
           <Key>
             <PropertyRef Name="UserItemId" />
@@ -446,6 +453,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
         <Association Name="FK_Mentor">
           <End Type="franchiseDbModel.Mentor" Role="Mentor" Multiplicity="1" />
           <End Type="franchiseDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
@@ -458,6 +466,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
         <Association Name="FK__UserItems__ItemI__66603565">
           <End Type="franchiseDbModel.Item" Role="Item" Multiplicity="1" />
           <End Type="franchiseDbModel.UserItem" Role="UserItem" Multiplicity="*" />
@@ -531,6 +540,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="franchiseDbModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
@@ -558,6 +568,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="franchiseDbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
@@ -581,6 +592,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
           <EntitySetMapping Name="UserItems">
             <EntityTypeMapping TypeName="franchiseDbModel.UserItem">
               <MappingFragment StoreEntitySet="UserItems">
