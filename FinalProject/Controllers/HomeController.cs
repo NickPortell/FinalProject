@@ -38,14 +38,13 @@ namespace FinalProject.Controllers
             return View(items);
         }
 
-<<<<<<< HEAD
+
         public ActionResult UserProfile()
         {
 
-
+            ViewBag.Mentors = ORM.Mentors.ToList();
             return View();
         }
-=======
->>>>>>> a160b3a93c99baba2473b26150098db10131bdbf
+
     }
 }
