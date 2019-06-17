@@ -1,4 +1,5 @@
 ﻿using FinalProject.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace FinalProject.Controllers
 
         public ActionResult UserInfo()
         {
+            var userId = User.Identity.GetUserId();
             return View();
         }
 

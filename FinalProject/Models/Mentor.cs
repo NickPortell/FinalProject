@@ -14,11 +14,20 @@ namespace FinalProject.Models
     
     public partial class Mentor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Mentor()
+        {
+            this.AspNetUsers = new HashSet<AspNetUser>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Personality { get; set; }
         public string Ability1 { get; set; }
         public string Ability2 { get; set; }
         public bool Hero_Villain { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }
