@@ -19,7 +19,7 @@ namespace FinalProject.Models
         public int ItemId { get; set; }
         public int Quantity { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Item Item { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

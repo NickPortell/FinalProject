@@ -27,6 +27,7 @@
                     @if (User.Identity.GetUserId() != null)
                     {
                         <li>@Html.ActionLink("Inventory", "Inventory", "Home")</li>
+                        <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
