@@ -9,6 +9,17 @@
         <EntityTypeShape EntityType="franchiseDbModel.Crime" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="franchiseDbModel.Item" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="franchiseDbModel.Mentor" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="franchiseDbModel.AspNetUser" Width="1.5" PointX="7" PointY="2.75" />
+        <AssociationConnector Association="franchiseDbModel.FK_Mentor" />
+        <EntityTypeShape EntityType="franchiseDbModel.AspNetRole" Width="1.5" PointX="4.75" PointY="7.625" />
+        <EntityTypeShape EntityType="franchiseDbModel.AspNetUserClaim" Width="1.5" PointX="9.25" PointY="8.625" />
+        <EntityTypeShape EntityType="franchiseDbModel.AspNetUserLogin" Width="1.5" PointX="9.25" PointY="6" />
+        <EntityTypeShape EntityType="franchiseDbModel.UserItem" Width="1.5" PointX="9.25" PointY="2.25" />
+        <AssociationConnector Association="franchiseDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="franchiseDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="franchiseDbModel.FK__UserItems__UserI__656C112C" />
+        <AssociationConnector Association="franchiseDbModel.FK__UserItems__ItemI__66603565" />
+        <AssociationConnector Association="franchiseDbModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

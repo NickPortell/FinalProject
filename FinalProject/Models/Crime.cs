@@ -9,14 +9,9 @@
 
 namespace FinalProject.Models
 {
-    using Newtonsoft.Json.Linq;
     using System;
     using System.Collections.Generic;
-    using System.Configuration;
-    using System.IO;
-    using System.Linq;
-    using System.Net;
-
+    
     public partial class Crime
     {
         public string State { get; set; }
@@ -31,115 +26,5 @@ namespace FinalProject.Models
         public double Larceny { get; set; }
         public double Motor_Vehicle_Theft { get; set; }
         public double Arson { get; set; }
-
-
-        #region Constructors
-        public Crime(string state)
-        {
-            JObject allData = JObject.Parse(GetStateData(state));
-            JObject data = (JObject)(allData["results"].Where(s => (int)s["year"] == 2017).First());
-
-
-            State = (string)(data)["state_abbr"];
-            Population = (double?)(data)["population"] ?? 0;
-            Violent_Crime = (double?)(data)["violent_crime"] ?? 0;
-            Homicide = (double?)(data)["homicide"] ?? 0;
-
-            Rape_Revised = (double?)(data)["rape_revised"] ?? 0;
-            Robbery = (double?)(data)["robbery"] ?? 0;
-            Aggravated_Assault = (double?)(data)["aggravated_assault"] ?? 0;
-            Property_Crime = (double?)(data)["property_crime"] ?? 0;
-
-            Burglary = (double?)(data)["burglary"] ?? 0;
-            Larceny = (double?)(data)["larceny"] ?? 0;
-            Motor_Vehicle_Theft = (double?)(data)["motor_vehicle_theft"] ?? 0;
-            Arson = (double?)(data)["arson"] ?? 0;
-
-
-        }
-        public Crime()
-        {
-
-        }
-        #endregion
-
-        #region DAL Info/Methods
-        private static string apiKey = ConfigurationManager.AppSettings["apiKey"];
-
-        public static string GetStateData(string state)
-        {
-            HttpWebRequest request = WebRequest.CreateHttp($"https://api.usa.gov/crime/fbi/sapi/api/estimates/states/{state}/2000/2017?api_key={apiKey}");
-
-            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0";
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                StreamReader data = new StreamReader(response.GetResponseStream());
-                return data.ReadToEnd();
-            }
-            return null;
-        }
-        #endregion
-
-        #region Code used to generate Crimes-Table initially
-
-        //string[] states = { "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI",
-        //                    "ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI",
-        //                    "MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC",
-        //                    "ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT",
-        //                    "VT","VA","WA","WV","WI","WY" };
-
-        //for(int i = 0; i < states.Length; i++)
-        //{
-        //    Crime crime = new Crime(states[i]);
-        //    ORM.Crimes.Add(crime);
-        //}
-
-        //ORM.SaveChanges();
-        //List<Crime> crimeList = ORM.Crimes.ToList();
-
-        #endregion
-
-        #region Crimes Table View
-        //        <table class="table">
-        //    <tr>
-        //        <th>State</th>
-        //        <th>Population</th>
-        //        <th>Violent_Crime</th>
-        //        <th>Homicide</th>
-        //        <th>Rape_Revised</th>
-        //        <th>Robbery</th>
-        //        <th>Aggravated_Assault</th>
-        //        <th>Property_Crime</th>
-        //        <th>Burglary</th>
-        //        <th>Larceny</th>
-        //        <th>Motor_Vehicle_Theft</th>
-        //        <th>Arson</th>
-        //    </tr>
-
-        //    @foreach(var c in Model)
-        //        {
-        //        < tr >
-        //            < td > @c.State </ td >
-        //            < td > @c.Population </ td >
-        //            < td > @c.Violent_Crime </ td >
-        //            < td > @c.Homicide </ td >
-        //            < td > @c.Rape_Revised </ td >
-        //            < td > @c.Robbery </ td >
-        //            < td > @c.Aggravated_Assault </ td >
-        //            < td > @c.Property_Crime </ td >
-        //            < td > @c.Burglary </ td >
-        //            < td > @c.Larceny </ td >
-        //            < td > @c.Motor_Vehicle_Theft </ td >
-        //            < td > @c.Arson </ td >
-        //        </ tr >
-        //    }
-
-        //</table>
-        #endregion
-
     }
-
 }
