@@ -21,8 +21,9 @@ namespace FinalProject.Controllers
 
         public ActionResult UserInfo()
         {
-            var userId = User.Identity.GetUserId();
-            return View();
+            string userId = User.Identity.GetUserId();
+            
+            return View(ORM.AspNetUsers.Find(userId));
         }
 
         public ActionResult Inventory()
@@ -37,11 +38,14 @@ namespace FinalProject.Controllers
             return View(items);
         }
 
+<<<<<<< HEAD
         public ActionResult UserProfile()
         {
 
 
             return View();
         }
+=======
+>>>>>>> a160b3a93c99baba2473b26150098db10131bdbf
     }
 }
