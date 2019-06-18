@@ -22,7 +22,7 @@ namespace FinalProject.Controllers
         public ActionResult UserInfo()
         {
             string userId = User.Identity.GetUserId();
-            
+
             return View(ORM.AspNetUsers.Find(userId));
         }
 
@@ -30,7 +30,7 @@ namespace FinalProject.Controllers
         {
             ViewBag.Title = "Inventory";
             string userId = User.Identity.GetUserId();
-            if(userId == null)
+            if (userId == null)
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -39,32 +39,50 @@ namespace FinalProject.Controllers
         }
 
 
-        public ActionResult UserProfile(string SuperPower, string HeroVillain)
+        public ActionResult UserProfile()
         {
 
-            //string userId = User.Identity.GetUserId();
-            //AspNetUser user = ORM.AspNetUsers.Find(userId);
-
-            List<Mentor> goodMentors = ORM.Mentors.Where(u => u.Hero_Villain == true).ToList();
-            List<Mentor> badMentors = ORM.Mentors.Where(u => u.Hero_Villain == false).ToList();
-
-            
-                if (HeroVillain == "true")
-                {
-                   
-                    ViewBag.Mentors = goodMentors;
-                }
-                else
-                {
-                    
-                    ViewBag.Mentors = badMentors;
-                }
-            
-            
-
-            
             return View();
         }
 
+        public ActionResult GetMentors(string HeroVillain)
+        {
+
+            List<Mentor> badMentors = ORM.Mentors.Where(u => u.Hero_Villain == false).ToList();
+            List<Mentor> goodMentors = ORM.Mentors.Where(u => u.Hero_Villain == true).ToList();
+
+            List<Mentor> m;
+
+            if (HeroVillain == "true")
+            {
+
+                m = goodMentors;
+            }
+            else
+            {
+
+                m = badMentors;
+            }
+
+            return View("UserProfile", m);
+        }
+
+        //public ActionResult SaveMentor(int Id)
+        //{
+
+        //    List<Mentor> thisMentor = ORM.Mentors.Find(Mentor.Id);
+        //    ORM.SaveChanges();
+        //    return RedirectToAction("UserInfo");
+
+
+
+
+        //}
     }
 }
+
+
+
+
+
+

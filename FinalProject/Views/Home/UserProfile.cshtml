@@ -5,34 +5,40 @@
 
 <h2>Mentor Selection</h2>
 
-<p>Please list your superpowers(if any) and select the type of franchise you would like to start</p>
+
 
 <form action="../Home/GetMentors" method="post">
 
+    <p>Please list your superpowers(if any) and select the type of franchise you would like to start</p>
+
     <input type="text" name="SuperPower" placeholder="Super Powers(if any)" /><br />
-    
+    <input type="text" name="SuperName" placeholder="Super Name" /><br />
 
     Hero: <input type="radio" name="HeroVillain" value="true" />
     Villain: <input type="radio" name="HeroVillain" value="false" />
 
-    <input type="submit" class="btn-block" value="Get Mentors" />
+    <input type="submit" value="Get Mentors" />
 
 </form>
 
-    <p>Please select a Mentor to help get you started</p>
-    <table class="table">
 
-        <tr>
-            <th>Name</th>
-            <th>Personality</th>
-            <th>Ability 1</th>
-            <th>Ability 2</th>
-            <th>Mentor Selection</th>
-        </tr>
+<form action="../Home/SaveMentors" method="post">
 
-        @if (ViewBag.Mentors != null)
-        {
-            foreach (var mentor in ViewBag.Mentors)
+    @if (Model != null)
+    {
+
+        <p>Please select a Mentor to help get you started</p>
+        <table class="table">
+
+            <tr>
+                <th>Name</th>
+                <th>Personality</th>
+                <th>Ability 1</th>
+                <th>Ability 2</th>
+                <th>Mentor Selection</th>
+            </tr>
+
+            @foreach (var mentor in Model)
             {
 
                 <tr>
@@ -40,17 +46,23 @@
                     <td>@mentor.Personality</td>
                     <td>@mentor.Ability1</td>
                     <td>@mentor.Ability2</td>
-                    <td>Select This Mentor<input type="radio" name="ChooseMentor" /></td>
+                    <td><a href="../Home/SaveMentor?Id=@mentor.Id" class="btn-primary">Select This Mentor</a></td>
                 </tr>
-
-
-
             }
-        }
+
+        </table>
+        
+    }
+</form>
 
 
 
-    </table>
+
+
+
+
+
+
 
 
 
