@@ -1,7 +1,9 @@
-﻿
+﻿@*<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>*@
+
 @{
     ViewBag.Title = "Franchise Location";
 }
+
 
 <h2>@ViewBag.Title</h2>
 
@@ -13,6 +15,8 @@
         <input type="submit" value="Select State" class="btn-success" />
     </form>
 }
+
+
 <table class="table">
     @if (ViewBag.State != null)
     {
@@ -29,7 +33,7 @@
             <th>Motor Vehicle Theft</th>
             <th>Arson</th>
         </tr>
-        <tr id="info">
+        <tr class="typewriter">
             <td>@ViewBag.State.State</td>
             <td>@ViewBag.State.Population</td>
             <td>@ViewBag.State.Violent_Crime</td>
@@ -46,17 +50,48 @@
 </table>
 
 
-<script type="text/javascript">
-    var i = 0;
-    var txt = '@ViewBag.chuckJokeText';
-    var speed = 50;
 
-    function typeWriter() {
+@*<script type="text/javascript">
+    var i = 0;
+    var speed = 5000;
+    var State = ;
+    var Population = ;
+    <th>Violent Crime</th>
+        <th>Homicide</th>
+        <th>Robbery</th>
+        <th>Aggravated Assault</th>
+        <th>Property Crime</th>
+        <th>Burglary</th>
+        <th>Larceny</th>
+        <th>Motor Vehicle Theft</th>
+        <th>Arson</th>
+
+    function typeWriter(txt, idLocation) {
+        //debugger;
         console.log("this is a test");
-        if (i < txt.length) {
-            document.getElementById("textBubble").innerHTML += txt.charAt(i);
-            i++;
-            setTimeout(typeWriter, speed);
+
+        var lengthOfString = txt.length;
+
+        for (var i = 0; i <= lengthOfString; i++) {
+            if (i < lengthOfString) {
+                document.getElementById(idLocation).innerHTML += txt.charAt(i);
+                //i++;
+                //setTimeout(typeWriter(txt, idLocation), 3000);
+
+            }
+            setTimeout(function () { console.log("hello"); }, 5000);
         }
+
     }
-</script>
+
+    $(document).ready(function () {
+        setTimeout(function () { }, 3000);
+        var state = $('#State').text();
+        typeWriter(state, "State");
+        setTimeout(function () { }, 3000);
+
+        var pop = $('#Pop').text();
+        typeWriter(pop, "Pop");
+
+    });
+</script>*@
