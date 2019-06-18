@@ -10,7 +10,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body onload="typeWriter()">
+<body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -29,6 +29,7 @@
                         <li>@Html.ActionLink("Inventory", "Inventory", "Home")</li>
                         <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
                         <li>@Html.ActionLink("Location", "Index", "Map")</li>
+                        <li>@Html.ActionLink("Profile", "UserProfile", "Home")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
