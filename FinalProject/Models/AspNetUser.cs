@@ -20,7 +20,6 @@ namespace FinalProject.Models
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.UserItems = new HashSet<UserItem>();
-            this.Bitcoin = 0;
         }
     
         public string Id { get; set; }
@@ -39,6 +38,7 @@ namespace FinalProject.Models
         public Nullable<bool> C_Hero_Villain_ { get; set; }
         public Nullable<int> MentorId { get; set; }
         public Nullable<decimal> Bitcoin { get; set; }
+        public string SuperName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
