@@ -39,14 +39,32 @@ namespace FinalProject.Controllers
         }
 
 
-        public ActionResult UserProfile()
+        public ActionResult UserProfile(string SuperPower, string HeroVillain)
         {
 
-            ViewBag.Mentors = ORM.Mentors.ToList();
+            //string userId = User.Identity.GetUserId();
+            //AspNetUser user = ORM.AspNetUsers.Find(userId);
+
+            List<Mentor> goodMentors = ORM.Mentors.Where(u => u.Hero_Villain == true).ToList();
+            List<Mentor> badMentors = ORM.Mentors.Where(u => u.Hero_Villain == false).ToList();
+
+            
+                if (HeroVillain == "true")
+                {
+                   
+                    ViewBag.Mentors = goodMentors;
+                }
+                else
+                {
+                    
+                    ViewBag.Mentors = badMentors;
+                }
+            
+            
+
+            
             return View();
         }
 
-
-        
     }
 }
