@@ -8,12 +8,12 @@
 
 @if (ViewBag.StateNames != null)
 {
-<form action="~/Map/GetMapInfo" method="post">
-    @Html.DropDownList("state", new SelectList(ViewBag.StateNames), "--Select State--")
-    <input type="submit" value="Select State" class="btn-success" />
-</form>
+    <form action="~/Map/GetMapInfo" method="post">
+        @Html.DropDownList("state", new SelectList(ViewBag.StateNames), "--Select State--")
+        <input type="submit" value="Select State" class="btn-success" />
+    </form>
 }
-<table class="table">        
+<table class="table">
     @if (ViewBag.State != null)
     {
         <tr>
@@ -29,8 +29,7 @@
             <th>Motor Vehicle Theft</th>
             <th>Arson</th>
         </tr>
-
-        <tr>
+        <tr id="info">
             <td>@ViewBag.State.State</td>
             <td>@ViewBag.State.Population</td>
             <td>@ViewBag.State.Violent_Crime</td>
@@ -47,5 +46,17 @@
 </table>
 
 
+<script type="text/javascript">
+    var i = 0;
+    var txt = '@ViewBag.chuckJokeText';
+    var speed = 50;
 
-
+    function typeWriter() {
+        console.log("this is a test");
+        if (i < txt.length) {
+            document.getElementById("textBubble").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+</script>
