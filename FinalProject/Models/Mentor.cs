@@ -19,7 +19,8 @@ namespace FinalProject.Models
         {
             this.AspNetUsers = new HashSet<AspNetUser>();
         }
-    
+
+        public static object Identity { get; internal set; }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Personality { get; set; }

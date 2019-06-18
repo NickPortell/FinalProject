@@ -5,51 +5,60 @@
 
 <h2>Mentor Selection</h2>
 
-<p>Please fill out this form so we may direct you to the proper mentor</p>
+<p>Please list your superpowers(if any) and select the type of franchise you would like to start</p>
 
-<form action="../Home/UserInfo" method="post">
+<form action="../Home/GetMentors" method="post">
 
     <input type="text" name="SuperPower" placeholder="Super Powers(if any)" /><br />
-
-    Hero: <input type="radio" name="Hero/Villain" value="true" />
-    Villain: <input type="radio" name="Hero/Villain" value="false" />
-
-             <p>Please select a Mentor to help get you started</p>
-             <table class="table">
-
-                 <tr>
-                     <th>Name</th>
-                     <th>Personality</th>
-                     <th>Ability 1</th>
-                     <th>Ability 2</th>
-                     <th>Mentor Selection</th>
-                 </tr>
-
-                 @foreach (var mentor in ViewBag.Mentors)
-                 {
-                    
-                     <tr>
-                         <td>@mentor.Name</td>
-                         <td>@mentor.Personality</td>
-                         <td>@mentor.Ability1</td>
-                         <td>@mentor.Ability2</td>
-                         <td>Select This Mentor<input type="radio" name="ChooseMentor" /></td>
-                     </tr>
-
-                     
-
-                 }
-
-
-             </table>
-             
     
 
-    <input type="submit" class="btn-block" value="Get Mentor" />
+    Hero: <input type="radio" name="HeroVillain" value="true" />
+    Villain: <input type="radio" name="HeroVillain" value="false" />
 
-
+    <input type="submit" class="btn-block" value="Get Mentors" />
 
 </form>
+
+    <p>Please select a Mentor to help get you started</p>
+    <table class="table">
+
+        <tr>
+            <th>Name</th>
+            <th>Personality</th>
+            <th>Ability 1</th>
+            <th>Ability 2</th>
+            <th>Mentor Selection</th>
+        </tr>
+
+        @if (ViewBag.Mentors != null)
+        {
+            foreach (var mentor in ViewBag.Mentors)
+            {
+
+                <tr>
+                    <td>@mentor.Name</td>
+                    <td>@mentor.Personality</td>
+                    <td>@mentor.Ability1</td>
+                    <td>@mentor.Ability2</td>
+                    <td>Select This Mentor<input type="radio" name="ChooseMentor" /></td>
+                </tr>
+
+
+
+            }
+        }
+
+
+
+    </table>
+
+
+
+
+
+
+
+
 
 
 
