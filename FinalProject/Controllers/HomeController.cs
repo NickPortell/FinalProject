@@ -66,28 +66,5 @@ namespace FinalProject.Controllers
             return View();
         }
 
-
-
-
-
-        //public List<string>  GetMentors(bool heroVillain)
-        //{
-        //     if(heroVillain == true)
-        //    {
-        //        List<Mentor> mentors = ORM.Mentors.Where(u => u.Hero_Villain == true).ToList();
-        //        ViewBag.Mentors = mentors;
-        //    }
-        //    else
-        //    {
-        //        List<Mentor> mentors = ORM.Mentors.Where(u => u.Hero_Villain == false).ToList();
-        //        ViewBag.Mentors = mentors;
-        //    }
-
-        //    return ViewBag.Mentors;
-
-        //}
-
-
-
     }
 }
