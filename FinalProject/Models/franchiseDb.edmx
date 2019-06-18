@@ -61,6 +61,7 @@
           <Property Name=" Hero/Villain " Type="bit" />
           <Property Name="MentorId" Type="int" />
           <Property Name="Bitcoin" Type="money" />
+          <Property Name="SuperName" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="Crimes">
           <Key>
@@ -98,7 +99,7 @@
           <Property Name="Personality" Type="nvarchar" MaxLength="25" />
           <Property Name="Ability1" Type="nvarchar" MaxLength="50" />
           <Property Name="Ability2" Type="nvarchar" MaxLength="50" />
-          <Property Name="Hero/Villain" Type="bit" Nullable="false" />
+          <Property Name="Hero/Villain" Type="bit" />
         </EntityType>
         <EntityType Name="UserItems">
           <Key>
@@ -255,7 +256,7 @@
           <Property Name="Personality" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="Ability1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Ability2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Hero_Villain" Type="Boolean" Nullable="false" />
+          <Property Name="Hero_Villain" Type="Boolean" />
           <NavigationProperty Name="AspNetUsers" Relationship="franchiseDbModel.FK_Mentor" FromRole="Mentor" ToRole="AspNetUser" />
         </EntityType>
         <EntityContainer Name="franchiseDbEntities" annotation:LazyLoadingEnabled="true">
@@ -291,7 +292,7 @@
             <End Role="Mentor" EntitySet="Mentors" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
 
         <EntityType Name="AspNetRole">
           <Key>
@@ -365,6 +366,7 @@
           <Property Name="C_Hero_Villain_" Type="Boolean" />
           <Property Name="MentorId" Type="Int32" />
           <Property Name="Bitcoin" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SuperName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="franchiseDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="franchiseDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="UserItems" Relationship="franchiseDbModel.FK__UserItems__UserI__656C112C" FromRole="AspNetUser" ToRole="UserItem" />
@@ -422,8 +424,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -523,6 +524,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="franchiseDbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="SuperName" ColumnName="SuperName" />
                 <ScalarProperty Name="Bitcoin" ColumnName="Bitcoin" />
                 <ScalarProperty Name="MentorId" ColumnName="MentorId" />
                 <ScalarProperty Name="C_Hero_Villain_" ColumnName=" Hero/Villain " />

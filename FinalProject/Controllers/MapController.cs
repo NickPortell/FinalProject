@@ -28,6 +28,17 @@ namespace FinalProject.Controllers
         public ActionResult GetMapInfo(string state)
         {
             ViewBag.State = ORM.Crimes.Find(state);
+
+            //ViewBag.StateName = ViewBag.
+            //    ViewBag.StatePop = 
+            //    ViewBag.StateViolent = 
+            //    ViewBag.StateHomicide =
+                //ViewBag.StateName =
+                //ViewBag.StateName = 
+                //ViewBag.StateName =
+                //ViewBag.StateName =
+                //ViewBag.StateName =
+
             return View("../Map/Index"); 
         }
     }

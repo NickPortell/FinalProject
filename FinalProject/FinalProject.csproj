@@ -193,19 +193,19 @@
       <DependentUpon>franchiseDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\franchiseDb.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>franchiseDb.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\franchiseDb.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>franchiseDb.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\franchiseDb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>franchiseDb.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs">
@@ -231,24 +231,20 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\franchiseDb.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>franchiseDb.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>franchiseDb.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\franchiseDb.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
+    <Content Include="Models\franchiseDb.edmx.diagram">
       <DependentUpon>franchiseDb.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\franchiseDb.tt">
+      <DependentUpon>franchiseDb.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>franchiseDb.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\franchiseDb.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>franchiseDb.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\franchiseDb.edmx.diagram">
-      <DependentUpon>franchiseDb.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -316,6 +312,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\franchiseDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>franchiseDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
