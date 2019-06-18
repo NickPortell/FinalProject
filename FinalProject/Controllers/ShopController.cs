@@ -47,13 +47,24 @@ namespace FinalProject.Controllers
 
             if (CanPurchase(item, quantity))
             {
-                UserItem newItem = new UserItem
+                if (ORM.UserItems.Any(i => i.ItemId == item.Id && i.UserId == user.Id))
                 {
-                    Item = item,
-                    AspNetUser = user,
-                    ItemId = item.Id,
-                    UserId = user.Id
-                };
+                    UserItem existing = ORM.UserItems.Where(i => i.ItemId == item.Id && i.UserId == user.Id).FirstOrDefault();
+                    ORM.UserItems.Attach(existing);
+                    existing.Quantity += quantity;
+                }
+                else
+                {
+                    UserItem newItem = new UserItem
+                    {
+                        Item = item,
+                        AspNetUser = user,
+                        ItemId = item.Id,
+                        UserId = user.Id,
+                        Quantity = quantity
+                    };
+                    ORM.UserItems.Add(newItem);
+                }
                 user.Bitcoin -= item.Cost * quantity;
                 ORM.SaveChanges();
 
