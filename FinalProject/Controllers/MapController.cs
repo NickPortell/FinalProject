@@ -14,9 +14,21 @@ namespace FinalProject.Controllers
         public ActionResult Index()
         {
             List<Crime> list = ORM.Crimes.ToList();
+            List<string> stateNames = new List<string>();
+
+            foreach(Crime state in list)
+            {
+                stateNames.Add(state.State);
+            }
+
+            ViewBag.StateNames = stateNames;
             return View(list);
         }
 
-        
+        public ActionResult GetMapInfo(string state)
+        {
+            ViewBag.State = ORM.Crimes.Find(state);
+            return View("../Map/Index"); 
+        }
     }
 }
