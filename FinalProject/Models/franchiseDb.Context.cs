@@ -34,5 +34,6 @@ namespace FinalProject.Models
         public virtual DbSet<UserItem> UserItems { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Mentor> Mentors { get; set; }
+        public virtual DbSet<Ability> Abilities { get; set; }
     }
 }
