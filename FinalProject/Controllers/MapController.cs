@@ -27,6 +27,16 @@ namespace FinalProject.Controllers
 
         public ActionResult GetMapInfo(string state)
         {
+            List<Crime> list = ORM.Crimes.ToList();
+            List<string> stateNames = new List<string>();
+
+            foreach (Crime s in list)
+            {
+                stateNames.Add(s.State);
+            }
+
+            ViewBag.StateNames = stateNames;
+
             ViewBag.State = ORM.Crimes.Find(state);
 
             //ViewBag.StateName = ViewBag.
