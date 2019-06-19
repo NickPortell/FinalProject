@@ -59,7 +59,7 @@ namespace FinalProject.Controllers
             ORM.AspNetUsers.Attach(user);
             user.StateId = state;
             ORM.SaveChanges();
-            return RedirectToAction("UserInfo");
+            return RedirectToAction("../Home/UserInfo");
         }
     }
 }
