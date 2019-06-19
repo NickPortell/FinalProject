@@ -20,7 +20,6 @@ namespace FinalProject.Models
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.UserItems = new HashSet<UserItem>();
-            this.Bitcoin = 100;
         }
     
         public string Id { get; set; }
