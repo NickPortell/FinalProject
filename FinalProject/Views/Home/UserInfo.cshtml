@@ -8,15 +8,43 @@
 <h2>User Info</h2>
 <div class="col-md-3" id="ProductBox">
     <h3>@Model.SuperName</h3>
-    <p>Superpower: @Model.SuperPower</p>
+    @if (Model.SuperPower == null)
+    {
+        <p>Superpower: <a href="../Home/UserProfile" class="btn-success">Edit Profile!</a></p>
+
+    }
+    else
+    {
+        <p>Superpower: @Model.SuperPower</p>
+
+    }
     @if (Model.C_Hero_Villain_ == true)
     {
         <p>Hero/Villain: Hero</p>
     }
-    else
+    else if (Model.C_Hero_Villain_ == false)
     {
         <p>Hero/Villain: Villain</p>
     }
-    <p>Mentor: @Model.Mentor.Name</p>
-    <p>Location:  @Model.StateId</p>
+    else
+    {
+        <p>Hero/Villain: <a href="../Home/UserProfile" class="btn-success">Edit Profile!</a></p>
+    }
+    @if (Model.Mentor != null)
+    {
+        <p>Mentor: @Model.Mentor.Name</p>
+    }
+    else if (Model.C_Hero_Villain_ == null)
+    {
+        <p>Mentor: <a href="../Home/UserProfile" class="btn-success">Edit Profile!</a></p>
+    }
+    @if (Model.StateId != null)
+    {
+        <p>Location:  @Model.StateId</p>
+    }
+    else
+    {
+        <p>Location: <a href="../Map/Index" class="btn-success">Choose Location!</a></p>
+
+    }
 </div>
