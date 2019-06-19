@@ -28,11 +28,11 @@ namespace FinalProject.Models
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Crime> Crimes { get; set; }
         public virtual DbSet<Item> Items { get; set; }
-        public virtual DbSet<Mentor> Mentors { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<UserItem> UserItems { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Mentor> Mentors { get; set; }
     }
 }

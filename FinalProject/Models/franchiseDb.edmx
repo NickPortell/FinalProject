@@ -96,7 +96,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" />
           <Property Name="Personality" Type="nvarchar" MaxLength="25" />
           <Property Name="Ability1" Type="nvarchar" MaxLength="50" />
           <Property Name="Ability2" Type="nvarchar" MaxLength="50" />
@@ -265,23 +265,10 @@
           <Property Name="Availability" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserItems" Relationship="franchiseDbModel.FK__UserItems__ItemI__66603565" FromRole="Item" ToRole="UserItem" />
         </EntityType>
-        <EntityType Name="Mentor">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Personality" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="Ability1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Ability2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Hero_Villain" Type="Boolean" />
-          <NavigationProperty Name="AspNetUsers" Relationship="franchiseDbModel.FK_Mentor" FromRole="Mentor" ToRole="AspNetUser" />
-        </EntityType>
         <EntityContainer Name="franchiseDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Crimes" EntityType="Self.Crime" />
           <EntitySet Name="Items" EntityType="Self.Item" />
-          <EntitySet Name="Mentors" EntityType="Self.Mentor" />
 
 
           <EntitySet Name="AspNetRoles" EntityType="franchiseDbModel.AspNetRole" />
@@ -306,12 +293,13 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="UserItem" EntitySet="UserItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mentor" Association="franchiseDbModel.FK_Mentor">
-            <End Role="Mentor" EntitySet="Mentors" />
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-          </AssociationSet>
           <AssociationSet Name="FK_State" Association="franchiseDbModel.FK_State">
             <End Role="Crime" EntitySet="Crimes" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Mentors" EntityType="franchiseDbModel.Mentor" />
+          <AssociationSet Name="FK_Mentor" Association="franchiseDbModel.FK_Mentor">
+            <End Role="Mentor" EntitySet="Mentors" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
           </EntityContainer>
@@ -392,9 +380,9 @@
           <NavigationProperty Name="AspNetUserClaims" Relationship="franchiseDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="franchiseDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="UserItems" Relationship="franchiseDbModel.FK__UserItems__UserI__656C112C" FromRole="AspNetUser" ToRole="UserItem" />
-          <NavigationProperty Name="Mentor" Relationship="franchiseDbModel.FK_Mentor" FromRole="AspNetUser" ToRole="Mentor" />
           <Property Name="StateId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Crime" Relationship="franchiseDbModel.FK_State" FromRole="AspNetUser" ToRole="Crime" />
+          <NavigationProperty Name="Mentor" Relationship="franchiseDbModel.FK_Mentor" FromRole="AspNetUser" ToRole="Mentor" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="franchiseDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -436,18 +424,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Mentor">
-          <End Type="franchiseDbModel.Mentor" Role="Mentor" Multiplicity="0..1" />
-          <End Type="franchiseDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mentor">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUser">
-              <PropertyRef Name="MentorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_State">
           <End Type="franchiseDbModel.Crime" Role="Crime" Multiplicity="0..1" />
           <End Type="franchiseDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
@@ -457,6 +433,30 @@
             </Principal>
             <Dependent Role="AspNetUser">
               <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Mentor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Personality" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Ability1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ability2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hero_Villain" Type="Boolean" />
+          <NavigationProperty Name="AspNetUsers" Relationship="franchiseDbModel.FK_Mentor" FromRole="Mentor" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_Mentor">
+          <End Type="franchiseDbModel.Mentor" Role="Mentor" Multiplicity="0..1" />
+          <End Type="franchiseDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mentor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="MentorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -502,18 +502,6 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="Availability" ColumnName="Availability" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Mentors">
-            <EntityTypeMapping TypeName="franchiseDbModel.Mentor">
-              <MappingFragment StoreEntitySet="Mentors">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Personality" ColumnName="Personality" />
-                <ScalarProperty Name="Ability1" ColumnName="Ability1" />
-                <ScalarProperty Name="Ability2" ColumnName="Ability2" />
-                <ScalarProperty Name="Hero_Villain" ColumnName="Hero/Villain" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -577,6 +565,18 @@
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mentors">
+            <EntityTypeMapping TypeName="franchiseDbModel.Mentor">
+              <MappingFragment StoreEntitySet="Mentors">
+                <ScalarProperty Name="Hero_Villain" ColumnName="Hero/Villain" />
+                <ScalarProperty Name="Ability2" ColumnName="Ability2" />
+                <ScalarProperty Name="Ability1" ColumnName="Ability1" />
+                <ScalarProperty Name="Personality" ColumnName="Personality" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
