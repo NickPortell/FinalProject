@@ -40,6 +40,7 @@ namespace FinalProject.Models
         public Nullable<decimal> Bitcoin { get; set; }
         public string SuperName { get; set; }
         public string StateId { get; set; }
+        public string Personality { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
