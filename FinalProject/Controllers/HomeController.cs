@@ -45,8 +45,14 @@ namespace FinalProject.Controllers
             return View();
         }
 
-        public ActionResult GetMentors(string HeroVillain)
+        public ActionResult GetMentors(string SuperPower, string SuperName, string HeroVillain)
         {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ORM.AspNetUsers.Attach(user);
+            user.SuperPower = SuperPower;
+            user.SuperName = SuperName;
+            user.C_Hero_Villain_ = bool.Parse(HeroVillain);
+            ORM.SaveChanges();
 
             List<Mentor> badMentors = ORM.Mentors.Where(u => u.Hero_Villain == false).ToList();
             List<Mentor> goodMentors = ORM.Mentors.Where(u => u.Hero_Villain == true).ToList();
@@ -67,17 +73,19 @@ namespace FinalProject.Controllers
             return View("UserProfile", m);
         }
 
-        //public ActionResult SaveMentor(int Id)
-        //{
+        public ActionResult SaveMentor(int Id)
+        {
 
-        //    List<Mentor> thisMentor = ORM.Mentors.Find(Mentor.Id);
-        //    ORM.SaveChanges();
-        //    return RedirectToAction("UserInfo");
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ORM.AspNetUsers.Attach(user);
+            user.MentorId = Id;
+            ORM.SaveChanges();
+            return RedirectToAction("UserInfo");
 
 
 
 
-        //}
+        }
     }
 }
 

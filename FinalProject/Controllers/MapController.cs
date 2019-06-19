@@ -1,4 +1,5 @@
 ﻿using FinalProject.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,16 @@ namespace FinalProject.Controllers
 
         public ActionResult GetMapInfo(string state)
         {
+            List<Crime> list = ORM.Crimes.ToList();
+            List<string> stateNames = new List<string>();
+
+            foreach (Crime s in list)
+            {
+                stateNames.Add(s.State);
+            }
+
+            ViewBag.StateNames = stateNames;
+
             ViewBag.State = ORM.Crimes.Find(state);
 
             //ViewBag.StateName = ViewBag.
@@ -40,6 +51,15 @@ namespace FinalProject.Controllers
                 //ViewBag.StateName =
 
             return View("../Map/Index"); 
+        }
+
+        public ActionResult SaveState(string state)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ORM.AspNetUsers.Attach(user);
+            user.StateId = state;
+            ORM.SaveChanges();
+            return RedirectToAction("UserInfo");
         }
     }
 }
