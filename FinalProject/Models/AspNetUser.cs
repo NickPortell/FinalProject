@@ -47,7 +47,7 @@ namespace FinalProject.Models
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserItem> UserItems { get; set; }
-        public virtual Mentor Mentor { get; set; }
         public virtual Crime Crime { get; set; }
+        public virtual Mentor Mentor { get; set; }
     }
 }
