@@ -16,14 +16,50 @@
     </form>
 }
 
+<form action="../Map/SaveState" method="post">
+    <table class="table">
+        @if (ViewBag.State != null)
+        {
+            <tr>
+                <th>State</th>
+                <th>Population</th>
+                <th>Violent Crime</th>
+                <th>Homicide</th>
+                <th>Robbery</th>
+                <th>Aggravated Assault</th>
+                <th>Property Crime</th>
+                <th>Burglary</th>
+                <th>Larceny</th>
+                <th>Motor Vehicle Theft</th>
+                <th>Arson</th>
+            </tr>
+            <tr class="typewriter">
+                <td>
+                    <input type="submit" name="state" value="@ViewBag.State.State" />
+                </td>
+                <td>@ViewBag.State.Population</td>
+                <td>@ViewBag.State.Violent_Crime</td>
+                <td>@ViewBag.State.Homicide</td>
+                <td>@ViewBag.State.Robbery</td>
+                <td>@ViewBag.State.Aggravated_Assault</td>
+                <td>@ViewBag.State.Property_Crime</td>
+                <td>@ViewBag.State.Burglary</td>
+                <td>@ViewBag.State.Larceny</td>
+                <td>@ViewBag.State.Motor_Vehicle_Theft</td>
+                <td>@ViewBag.State.Arson</td>
+            </tr>
+        }
+    </table>
+</form>
 
-<table class="table">
-    @if (ViewBag.State != null)
-    {
-        <tr>
-            <th>State</th>
-            <th>Population</th>
-            <th>Violent Crime</th>
+
+
+@*<script type="text/javascript">
+        var i = 0;
+        var speed = 5000;
+        var State = ;
+        var Population = ;
+        <th>Violent Crime</th>
             <th>Homicide</th>
             <th>Robbery</th>
             <th>Aggravated Assault</th>
@@ -32,66 +68,33 @@
             <th>Larceny</th>
             <th>Motor Vehicle Theft</th>
             <th>Arson</th>
-        </tr>
-        <tr class="typewriter">
-            <td>@ViewBag.State.State</td>
-            <td>@ViewBag.State.Population</td>
-            <td>@ViewBag.State.Violent_Crime</td>
-            <td>@ViewBag.State.Homicide</td>
-            <td>@ViewBag.State.Robbery</td>
-            <td>@ViewBag.State.Aggravated_Assault</td>
-            <td>@ViewBag.State.Property_Crime</td>
-            <td>@ViewBag.State.Burglary</td>
-            <td>@ViewBag.State.Larceny</td>
-            <td>@ViewBag.State.Motor_Vehicle_Theft</td>
-            <td>@ViewBag.State.Arson</td>
-        </tr>
-    }
-</table>
 
+        function typeWriter(txt, idLocation) {
+            //debugger;
+            console.log("this is a test");
 
+            var lengthOfString = txt.length;
 
-@*<script type="text/javascript">
-    var i = 0;
-    var speed = 5000;
-    var State = ;
-    var Population = ;
-    <th>Violent Crime</th>
-        <th>Homicide</th>
-        <th>Robbery</th>
-        <th>Aggravated Assault</th>
-        <th>Property Crime</th>
-        <th>Burglary</th>
-        <th>Larceny</th>
-        <th>Motor Vehicle Theft</th>
-        <th>Arson</th>
+            for (var i = 0; i <= lengthOfString; i++) {
+                if (i < lengthOfString) {
+                    document.getElementById(idLocation).innerHTML += txt.charAt(i);
+                    //i++;
+                    //setTimeout(typeWriter(txt, idLocation), 3000);
 
-    function typeWriter(txt, idLocation) {
-        //debugger;
-        console.log("this is a test");
-
-        var lengthOfString = txt.length;
-
-        for (var i = 0; i <= lengthOfString; i++) {
-            if (i < lengthOfString) {
-                document.getElementById(idLocation).innerHTML += txt.charAt(i);
-                //i++;
-                //setTimeout(typeWriter(txt, idLocation), 3000);
-
+                }
+                setTimeout(function () { console.log("hello"); }, 5000);
             }
-            setTimeout(function () { console.log("hello"); }, 5000);
+
         }
 
-    }
+        $(document).ready(function () {
+            setTimeout(function () { }, 3000);
+            var state = $('#State').text();
+            typeWriter(state, "State");
+            setTimeout(function () { }, 3000);
 
-    $(document).ready(function () {
-        setTimeout(function () { }, 3000);
-        var state = $('#State').text();
-        typeWriter(state, "State");
-        setTimeout(function () { }, 3000);
+            var pop = $('#Pop').text();
+            typeWriter(pop, "Pop");
 
-        var pop = $('#Pop').text();
-        typeWriter(pop, "Pop");
-
-    });
-</script>*@
+        });
+    </script>*@

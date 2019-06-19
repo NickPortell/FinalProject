@@ -1,4 +1,5 @@
 ﻿using FinalProject.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,15 @@ namespace FinalProject.Controllers
                 //ViewBag.StateName =
 
             return View("../Map/Index"); 
+        }
+
+        public ActionResult SaveState(string state)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ORM.AspNetUsers.Attach(user);
+            user.StateId = state;
+            ORM.SaveChanges();
+            return RedirectToAction("UserInfo");
         }
     }
 }

@@ -14,6 +14,12 @@ namespace FinalProject.Models
     
     public partial class Crime
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Crime()
+        {
+            this.AspNetUsers = new HashSet<AspNetUser>();
+        }
+    
         public string State { get; set; }
         public double Population { get; set; }
         public double Violent_Crime { get; set; }
@@ -26,5 +32,8 @@ namespace FinalProject.Models
         public double Larceny { get; set; }
         public double Motor_Vehicle_Theft { get; set; }
         public double Arson { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }
