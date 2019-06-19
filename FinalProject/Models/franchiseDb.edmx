@@ -62,6 +62,7 @@
           <Property Name="MentorId" Type="int" />
           <Property Name="Bitcoin" Type="money" />
           <Property Name="SuperName" Type="nvarchar" MaxLength="256" />
+          <Property Name="StateId" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Crimes">
           <Key>
@@ -174,6 +175,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_State">
+          <End Role="Crimes" Type="Self.Crimes" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Crimes">
+              <PropertyRef Name="State" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="franchiseDbModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -202,6 +215,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Mentor" Association="Self.FK_Mentor">
             <End Role="Mentors" EntitySet="Mentors" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State" Association="Self.FK_State">
+            <End Role="Crimes" EntitySet="Crimes" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
@@ -235,6 +252,7 @@
           <Property Name="Larceny" Type="Double" Nullable="false" />
           <Property Name="Motor_Vehicle_Theft" Type="Double" Nullable="false" />
           <Property Name="Arson" Type="Double" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="franchiseDbModel.FK_State" FromRole="Crime" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -290,6 +308,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Mentor" Association="franchiseDbModel.FK_Mentor">
             <End Role="Mentor" EntitySet="Mentors" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State" Association="franchiseDbModel.FK_State">
+            <End Role="Crime" EntitySet="Crimes" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
           </EntityContainer>
@@ -371,6 +393,8 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="franchiseDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="UserItems" Relationship="franchiseDbModel.FK__UserItems__UserI__656C112C" FromRole="AspNetUser" ToRole="UserItem" />
           <NavigationProperty Name="Mentor" Relationship="franchiseDbModel.FK_Mentor" FromRole="AspNetUser" ToRole="Mentor" />
+          <Property Name="StateId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Crime" Relationship="franchiseDbModel.FK_State" FromRole="AspNetUser" ToRole="Crime" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="franchiseDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -421,6 +445,18 @@
             </Principal>
             <Dependent Role="AspNetUser">
               <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State">
+          <End Type="franchiseDbModel.Crime" Role="Crime" Multiplicity="0..1" />
+          <End Type="franchiseDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Crime">
+              <PropertyRef Name="State" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="StateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -524,6 +560,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="franchiseDbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="SuperName" ColumnName="SuperName" />
                 <ScalarProperty Name="Bitcoin" ColumnName="Bitcoin" />
                 <ScalarProperty Name="MentorId" ColumnName="MentorId" />
