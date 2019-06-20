@@ -8,36 +8,41 @@
 <h2>User Info</h2>
 <div class="col-md-3" id="ProductBox">
     <h3>@Model.SuperName</h3>
-    @if (Model.SuperPower == null)
+
+
+    @if (Model.SuperPower == null || Model.C_Hero_Villain_ == null || Model.Mentor == null || Model.Personality == null)
     {
-        <p>Superpower: <a href="../Home/UserProfile" class="btn-success">Edit Profile!</a></p>
+        <p>Add Profile Info: <a href="../Home/UserProfile" class="btn-success">GOOOOO!</a></p>
 
     }
-    else
+    
+    @if (Model.SuperPower != null)
     {
         <p>Superpower: @Model.SuperPower</p>
+    }
+    
+    @if (Model.C_Hero_Villain_ != null)
+    {
+        if (Model.C_Hero_Villain_ == true)
+        {
+            <p>Hero/Villain: Hero</p>
+        }
+        else
+        {
+            <p>Hero/Villain: Villain</p>
+        }
+    }
 
-    }
-    @if (Model.C_Hero_Villain_ == true)
-    {
-        <p>Hero/Villain: Hero</p>
-    }
-    else if (Model.C_Hero_Villain_ == false)
-    {
-        <p>Hero/Villain: Villain</p>
-    }
-    else
-    {
-        <p>Hero/Villain: <a href="../Home/UserProfile" class="btn-success">Edit Profile!</a></p>
-    }
     @if (Model.Mentor != null)
     {
         <p>Mentor: @Model.Mentor.Name</p>
     }
-    else if (Model.C_Hero_Villain_ == null)
+    
+    @if (Model.Personality != null)
     {
-        <p>Mentor: <a href="../Home/UserProfile" class="btn-success">Edit Profile!</a></p>
+        <p>Personality: @Model.Personality</p>
     }
+
     @if (Model.StateId != null)
     {
         <p>Location:  @Model.StateId</p>

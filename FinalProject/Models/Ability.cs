@@ -14,6 +14,12 @@ namespace FinalProject.Models
     
     public partial class Ability
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Ability()
+        {
+            this.AspNetUsers = new HashSet<AspNetUser>();
+        }
+    
         public string Ability1 { get; set; }
         public Nullable<bool> Violent_Crime { get; set; }
         public Nullable<bool> Homicide { get; set; }
@@ -24,5 +30,8 @@ namespace FinalProject.Models
         public Nullable<bool> Larceny { get; set; }
         public Nullable<bool> Motor_Vehicle_Theft { get; set; }
         public Nullable<bool> Arson { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

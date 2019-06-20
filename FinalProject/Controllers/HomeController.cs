@@ -41,16 +41,73 @@ namespace FinalProject.Controllers
 
         public ActionResult UserProfile()
         {
+            #region Drop-down for superpowers
+            List<Ability> list = ORM.Abilities.ToList();
+            List<string> powerNames = new List<string>();
+
+            foreach (Ability power in list)
+            {
+                powerNames.Add(power.Ability1);
+            }
+
+            ViewBag.PowerNames = powerNames;
+            #endregion
+
+            #region Drop-down for personalities
+            List<Mentor> mentors = ORM.Mentors.ToList();
+            List<string> personalities = new List<string>();
+            List<string> personalitiesDistinct = new List<string>();
+
+
+            foreach (Mentor m in mentors)
+            {
+                personalities.Add(m.Personality);
+                personalitiesDistinct = personalities.Distinct().ToList();
+            }
+
+            ViewBag.Personalities = personalitiesDistinct;
+
+            #endregion
 
             return View();
         }
 
-        public ActionResult GetMentors(string SuperPower, string SuperName, string HeroVillain)
+        public ActionResult GetMentors(string SuperPower, string Personality, string SuperName, string HeroVillain)
         {
+            #region Drop-down for superpowers
+            List<Ability> list = ORM.Abilities.ToList();
+            List<string> powerNames = new List<string>();
+
+            foreach (Ability power in list)
+            {
+                powerNames.Add(power.Ability1);
+            }
+
+            ViewBag.PowerNames = powerNames;
+            #endregion
+
+            #region Drop-down for personalities
+            List<Mentor> mentors = ORM.Mentors.ToList();
+            List<string> personalities = new List<string>();
+            List<string> personalitiesDistinct = new List<string>();
+
+
+            foreach (Mentor men in mentors)
+            {
+                personalities.Add(men.Personality);
+                personalitiesDistinct = personalities.Distinct().ToList();
+            }
+
+            ViewBag.Personalities = personalitiesDistinct;
+
+            #endregion
+
+
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             ORM.AspNetUsers.Attach(user);
             user.SuperPower = SuperPower;
             user.SuperName = SuperName;
+            user.Personality = Personality;
             user.C_Hero_Villain_ = bool.Parse(HeroVillain);
             ORM.SaveChanges();
 
