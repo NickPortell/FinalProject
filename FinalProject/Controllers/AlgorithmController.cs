@@ -88,7 +88,7 @@ namespace FinalProject.Controllers
                 }
                 #endregion
 
-                #region Given a list of crimes, what locations have the highest count of those crimes
+                #region Given a list of crimes that they are good at, what locations have the highest count of those crimes
 
                 List<string> GoodLocations = new List<string>();
 
