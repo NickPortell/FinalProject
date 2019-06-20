@@ -43,31 +43,6 @@ namespace FinalProject.Controllers
 
             List<Ability> abilities = ORM.Abilities.ToList();
 
-
-            //Found either good or bad 
-            //Ability ability = new Ability();
-            //List<string> GoodAt = new List<string>();
-            //List<string> BadAt = new List<string>();
-
-            //foreach (var crime in ability.GetType().GetProperties())
-            //{
-            //    if (crime.GetValue(ability) is bool)
-            //    {
-            //        bool b = (bool)crime.GetValue(ability);
-
-            //        if (b)
-            //        {
-            //            GoodAt.Add(crime.Name);
-            //        }
-            //        else
-            //        {
-            //            BadAt.Add(crime.Name);
-            //        }
-            //    }
-            //}
-
-            //Check user's Alliance 
-
             if (user.C_Hero_Villain_ == true)
             {
                 #region After user chooses ability, what crimes they are good at stopping
