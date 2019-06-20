@@ -42,14 +42,14 @@ namespace FinalProject.Models
         public string StateId { get; set; }
         public string Personality { get; set; }
     
+        public virtual Ability Ability { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserItem> UserItems { get; set; }
-        public virtual Crime Crime { get; set; }
         public virtual Mentor Mentor { get; set; }
-        public virtual Ability Ability { get; set; }
+        public virtual Crime Crime { get; set; }
     }
 }
