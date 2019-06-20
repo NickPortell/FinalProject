@@ -2,75 +2,93 @@
 @{
     ViewBag.Title = "UserProfile";
 }
-
-<h2>Mentor Selection</h2>
-
-
-<form action="../Home/GetMentors" method="post" id="Profile">
-
-    <p>Please list your superpowers(if any) and select the type of franchise you would like to start</p>
-    <input type="text" name="SuperName" placeholder="Super Name" />
-
-    <br />
-
-    <select name="SuperPower" form="Profile">
-        @for (int i = 0; i < ViewBag.PowerNames.Count; i++)
-        {
-            <option value="@ViewBag.PowerNames[i]">@ViewBag.PowerNames[i]</option>
-        }
-    </select>
-
-    <br />
-
-    <select name="Personality" form="Profile">
-        @for (int i = 0; i < ViewBag.Personalities.Count; i++)
-        {
-            <option value="@ViewBag.Personalities[i]">@ViewBag.Personalities[i]</option>
-        }
-    </select>
-
-    <br />
-
-    Hero: <input type="radio" name="HeroVillain" value="true" />
-    Villain: <input type="radio" name="HeroVillain" value="false" />
-
-    <input type="submit" value="Get Mentors" />
-
-</form>
+<body>
+    <div>
+        <h2>Mentor Selection</h2>
 
 
-<form action="../Home/SaveMentors" method="post">
+        <form action="../Home/GetMentors" method="post" id="Profile">
 
-    @if (Model != null)
-    {
+            <p>Please list your superpowers(if any) and select the type of franchise you would like to start</p>
+            <input type="text" name="SuperName" placeholder="Super Name" />
 
-        <p>Please select a Mentor to help get you started</p>
-        <table class="table">
+            <br />
 
-            <tr>
-                <th>Name</th>
-                <th>Personality</th>
-                <th>Ability 1</th>
-                <th>Ability 2</th>
-                <th>Mentor Selection</th>
-            </tr>
+            <select name="SuperPower" form="Profile">
+                @for (int i = 0; i < ViewBag.PowerNames.Count; i++)
+                {
+                    <option value="@ViewBag.PowerNames[i]">@ViewBag.PowerNames[i]</option>
+                }
+            </select>
 
-            @foreach (var mentor in Model)
+            <br />
+
+            <select name="Personality" form="Profile">
+                @for (int i = 0; i < ViewBag.Personalities.Count; i++)
+                {
+                    <option value="@ViewBag.Personalities[i]">@ViewBag.Personalities[i]</option>
+                }
+            </select>
+
+            <br />
+
+            Hero: <input type="radio" name="HeroVillain" value="true" />
+            Villain: <input type="radio" name="HeroVillain" value="false" />
+
+            <input type="submit" value="Get Mentors" />
+
+        </form>
+
+
+        <form action="../Home/SaveMentors" method="post">
+
+            @if (Model != null)
             {
 
-                <tr>
-                    <td>@mentor.Name</td>
-                    <td>@mentor.Personality</td>
-                    <td>@mentor.Ability1</td>
-                    <td>@mentor.Ability2</td>
-                    <td><a href="../Home/SaveMentor?Id=@mentor.Id" class="btn-primary">Select This Mentor</a></td>
-                </tr>
+                <p>Please select a Mentor to help get you started</p>
+                <table class="table">
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Personality</th>
+                        <th>Ability 1</th>
+                        <th>Ability 2</th>
+                        <th>Mentor Selection</th>
+                    </tr>
+
+                    @foreach (var mentor in Model)
+                    {
+
+                        <tr>
+                            <td>@mentor.Name</td>
+                            <td>@mentor.Personality</td>
+                            <td>@mentor.Ability1</td>
+                            <td>@mentor.Ability2</td>
+                            <td><a href="../Home/SaveMentor?Id=@mentor.Id" class="btn-primary">Select This Mentor</a></td>
+                        </tr>
+                    }
+
+                </table>
+
             }
+        </form>
+    </div>
+</body>
 
-        </table>
 
-    }
-</form>
+<style>
+
+    body {
+        background-image: url(https://media1.tenor.com/images/2ad2cd3d33765c0a7fade8463b1329f2/tenor.gif?itemid=8622352);
+        color:white;
+    
+        
+        }
+
+
+</style>
+
+
 
 
 
