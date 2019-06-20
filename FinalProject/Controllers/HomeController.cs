@@ -69,6 +69,11 @@ namespace FinalProject.Controllers
 
             #endregion
 
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+
+            ViewBag.User = user;
+
+
             return View();
         }
 
@@ -110,6 +115,9 @@ namespace FinalProject.Controllers
             user.Personality = Personality;
             user.C_Hero_Villain_ = bool.Parse(HeroVillain);
             ORM.SaveChanges();
+
+            ViewBag.User = user;
+
 
             List<Mentor> badMentors = ORM.Mentors.Where(u => u.Hero_Villain == false).ToList();
             List<Mentor> goodMentors = ORM.Mentors.Where(u => u.Hero_Villain == true).ToList();
