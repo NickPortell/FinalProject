@@ -1,2 +1,30 @@
-﻿<h3>@ViewBag.Title</h3>
+﻿
+<body>
+    <img id="backgroundPic" src="..\Pictures\Dossier.png" alt="yooooo" />
+    <p>
+        <img id="foregroundPic" src="..\Pictures\secret1.jpg" alt="yooooo" />
+    </p>
+</body>
 
+<style>
+    body{
+        position:fixed;
+    }
+    #backgroundPic{
+        background-size:contain;
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%;
+        height:auto;
+        z-index:-1;
+    }
+    #foregroundPic {
+        display: block;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+   
+
+</style>
