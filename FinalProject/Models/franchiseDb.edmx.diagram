@@ -23,7 +23,6 @@
         <AssociationConnector Association="franchiseDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="franchiseDbModel.FK__UserItems__UserI__656C112C" />
         <AssociationConnector Association="franchiseDbModel.FK_Mentor" />
-        <AssociationConnector Association="franchiseDbModel.FK__AspNetUse__Super__6D0D32F4" />
         <AssociationConnector Association="franchiseDbModel.FK_State" />
 
       </Diagram>

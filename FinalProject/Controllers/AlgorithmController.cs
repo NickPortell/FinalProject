@@ -148,6 +148,7 @@ namespace FinalProject.Controllers
                         if (current > maxValue)
                         {
                             ViewBag.Name = (string)property.Name;
+                            ViewBag.Img = "..\\Pictures\\" + crime.State;
                             ViewBag.State = crime;
                             maxValue = current;
                         }
