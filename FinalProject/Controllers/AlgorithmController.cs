@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -66,12 +67,25 @@ namespace FinalProject.Controllers
                 #region Given a list of crimes that they are good at, what locations have the highest count of those crimes
 
                 List<string> GoodLocations = new List<string>();
-
-                foreach(var property in ability.GetType().GetProperties())
+                foreach (var property in ability.GetType().GetProperties())
                 {
-                    if(GoodAt.Contains(property.Name))
+                    if (GoodAt.Contains(property.Name))
                     {
                         property.GetValue(ability);
+                    }
+                }
+
+                int maxValue = int.MinValue;
+
+                foreach (var property in ORM.Crimes.GetType().GetProperties())
+                {
+                    foreach (Crime crime in ORM.Crimes)
+                    {
+                        if (GoodAt.Contains(property.Name))
+                        {
+                            int current = (int)property.GetValue(crime);
+                            maxValue = Math.Max(maxValue, current);
+                        }
                     }
                 }
 
@@ -82,9 +96,9 @@ namespace FinalProject.Controllers
                 List<Mentor> mentors = ORM.Mentors.ToList();
                 List<string> GoodWith = new List<string>();
 
-                foreach(Mentor m in mentors)
+                foreach (Mentor m in mentors)
                 {
-                    if(user.Personality == m.Personality)
+                    if (user.Personality == m.Personality)
                     {
                         GoodWith.Add(m.Name);
                     }
@@ -102,5 +116,49 @@ namespace FinalProject.Controllers
 
             return View();
         }
+
+        public ActionResult TestAlgorithm()
+        {
+            Ability ability = ORM.Abilities.Find("Fire Breath");
+            List<string> GoodAt = new List<string>();
+
+            foreach (var crime in ability.GetType().GetProperties())
+            {
+                if (crime.GetValue(ability) is bool)
+                {
+                    bool b = (bool)crime.GetValue(ability);
+
+                    if (b)
+                    {
+                        GoodAt.Add(crime.Name);
+                    }
+                }
+            }
+
+            int maxValue = 0;
+
+            foreach (Crime crime in ORM.Crimes)
+            {
+                foreach (var property in crime.GetType().GetProperties())
+                {
+
+                    if (GoodAt.Contains(property.Name))
+                    {
+                        int current = Convert.ToInt32(property.GetValue(crime));
+                        if (current > maxValue)
+                        {
+                            ViewBag.Name = (string)property.Name;
+                            ViewBag.State = crime;
+                            maxValue = current;
+                        }
+                    }
+                }
+            }
+            ViewBag.Max = maxValue;
+            ViewBag.Ability = ability.Ability1;
+
+            return View();
+        }
+
     }
 }

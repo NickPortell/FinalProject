@@ -2,15 +2,25 @@
 ﻿
 <body>
     <img id="backgroundPic" src="..\Pictures\Dossier.png" alt="yooooo" />
-    <p>
+    <div style="position:relative">
         <img id="foregroundPic" src="..\Pictures\secret1.png" alt="yooooo" />
-    </p>
+        <div style="position:absolute; left:185px; top:230px">
+            YOOOO! What's Good?! Whatever, who cares.
+        </div>
+        <div style="position:absolute; left:185px; top:266px">
+            YOOOO! What's Good?! Whatever, who cares.
+        </div>
+        <div style="position:absolute; left:185px; top:302px">
+            YOOOO! What's Good?! Whatever, who cares.
+        </div>
+    </div>
 </body>
 
 <style>
     .container body-content {
         position: fixed;
     }
+
     #backgroundPic{
         position:fixed;
         left:0;
@@ -22,8 +32,9 @@
     #foregroundPic {
         position:fixed;
         background-size: contain;
-        display: block;
-        width: 50%;
+        display: inline-block;
+        float:left;
+        width: 500px;
         margin-left: auto;
         margin-right: auto;
     }
