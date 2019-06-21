@@ -151,6 +151,11 @@ namespace FinalProject.Controllers
 
 
         }
+
+        public ActionResult Test()
+        {
+            return View();
+        }
     }
 }
 
