@@ -1,18 +1,28 @@
 
 ﻿
 <body>
-    <p><img id="backgroundPic" src="..\Pictures\Dossier.png" alt="yooooo" /></p>
-    <p>
+
+    <img id="backgroundPic" src="..\Pictures\Dossier.png" alt="yooooo" />
+    <div style="position:relative">
         <img id="foregroundPic" src="..\Pictures\secret1.png" alt="yooooo" />
-    </p>
+        <div style="position:absolute; left:185px; top:230px">
+            YOOOO! What's Good?! Whatever, who cares.
+        </div>
+        <div style="position:absolute; left:185px; top:266px">
+            YOOOO! What's Good?! Whatever, who cares.
+        </div>
+        <div style="position:absolute; left:185px; top:302px">
+            YOOOO! What's Good?! Whatever, who cares.
+        </div>
+    </div>
 </body>
 
 <style>
-    body{
-        position:fixed;
+    .container body-content {
+        position: fixed;
     }
+
     #backgroundPic{
-        background-size:contain;
         position:fixed;
         left:0;
         top:0;
@@ -21,8 +31,11 @@
         z-index:-1;
     }
     #foregroundPic {
-        display: block;
-        width: 50%;
+        position:fixed;
+        background-size: contain;
+        display: inline-block;
+        float:left;
+        width: 500px;
         margin-left: auto;
         margin-right: auto;
     }
