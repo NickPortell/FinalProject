@@ -249,7 +249,27 @@
     </Content>
     <Content Include="Pictures\DeskBackGround.jpg" />
     <Content Include="Pictures\Dossier.png" />
+    <Content Include="Pictures\Items\AIVirtualAssistant.jpg" />
+    <Content Include="Pictures\Items\AmbitiousNewsRepresentative.jpg" />
+    <Content Include="Pictures\Items\ArrestKit.jpg" />
+    <Content Include="Pictures\Items\Cat.jpg" />
+    <Content Include="Pictures\Items\DeluxeFirstAidKit.jpg" />
+    <Content Include="Pictures\Items\DiscreetPoliceConfidant.jpg" />
+    <Content Include="Pictures\Items\EvilMonologueKit.jpg" />
+    <Content Include="Pictures\Items\Henchmen.jpg" />
+    <Content Include="Pictures\Items\MindControlDevice.jpg" />
+    <Content Include="Pictures\Items\MutatedGuardHamster.jpg" />
+    <Content Include="Pictures\Items\OrbitalDeathRay.jpg" />
+    <Content Include="Pictures\Items\PoliceScanner.jpg" />
+    <Content Include="Pictures\Items\PowerArmorSuit.jpg" />
+    <Content Include="Pictures\Items\Shiny,UnthreateningHeadquarters.jpg" />
+    <Content Include="Pictures\Items\SuperJet.jpg" />
+    <Content Include="Pictures\Items\SuperSuit.jpg" />
+    <Content Include="Pictures\Items\SwissArmyKnife.jpg" />
+    <Content Include="Pictures\Items\UpliftingSpeechKit.jpg" />
+    <Content Include="Pictures\Items\VolcanoLair.jpg" />
     <Content Include="Pictures\secret1.png" />
+    <Content Include="Pictures\tablet.png" />
     <Content Include="Pictures\StateImages\AK.jpg" />
     <Content Include="Pictures\StateImages\AL.jpg" />
     <Content Include="Pictures\StateImages\AR.jpg" />
