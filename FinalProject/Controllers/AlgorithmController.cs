@@ -16,39 +16,16 @@ namespace FinalProject.Controllers
         // GET: Algorithm
         public ActionResult Index()
         {
-            //Grabbed the current user as an object
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
-
-
-
-            List<Crime> crimes = ORM.Crimes.ToList();
-
-
-            //Create a local list of names for locations in our Crimes table
-            List<string> locations = new List<string>();
-
-            foreach (Crime c in crimes)
-            {
-                locations.Add(c.State);
-            }
-
-            //Create a list of the types of crimes 
-            List<string> crimeTypes = new List<string>();
-            foreach (var type in ORM.Crimes.GetType().GetProperties())
-            {
-                crimeTypes.Add(type.Name);
-            }
-
-            List<Crime> SortedList = crimes.OrderBy(o => o.Arson).ToList();
-
-
-            List<Ability> abilities = ORM.Abilities.ToList();
 
             if (user.C_Hero_Villain_ == true)
             {
-                #region After user chooses ability, what crimes they are good at stopping
-                Ability ability = new Ability();
+                Ability ability = user.Ability;
+
                 List<string> GoodAt = new List<string>();
+                List<Item> SuggestedItems = new List<Item>();
+                int maxValue = 0;
+
 
                 foreach (var crime in ability.GetType().GetProperties())
                 {
@@ -62,34 +39,31 @@ namespace FinalProject.Controllers
                         }
                     }
                 }
-                #endregion
 
-                #region Given a list of crimes that they are good at, what locations have the highest count of those crimes
 
-                List<string> GoodLocations = new List<string>();
-                foreach (var property in ability.GetType().GetProperties())
+                foreach (Crime crime in ORM.Crimes)
                 {
-                    if (GoodAt.Contains(property.Name))
+                    foreach (var property in crime.GetType().GetProperties())
                     {
-                        property.GetValue(ability);
-                    }
-                }
 
-                int maxValue = int.MinValue;
-
-                foreach (var property in ORM.Crimes.GetType().GetProperties())
-                {
-                    foreach (Crime crime in ORM.Crimes)
-                    {
                         if (GoodAt.Contains(property.Name))
                         {
-                            int current = (int)property.GetValue(crime);
-                            maxValue = Math.Max(maxValue, current);
+                            int current = Convert.ToInt32(property.GetValue(crime));
+                            if (current > maxValue)
+                            {
+                                ViewBag.Name = (string)property.Name;
+                                ViewBag.Img = "..\\Pictures\\StateImages\\" + crime.State + ".jpg";
+                                ViewBag.State = crime;
+                                maxValue = current;
+                                SuggestedItems.Add(ORM.Items.Where(i => i.Crime == (string)property.Name && (i.Availability == "good" || i.Availability == "both")).FirstOrDefault());
+                            }
                         }
                     }
                 }
 
-                #endregion
+                ViewBag.Max = maxValue;
+                ViewBag.Ability = ability.Ability1;
+                ViewBag.SuggestedItems = SuggestedItems.Distinct();
 
                 #region User chooses personality, what mentors they are good with
 
@@ -121,6 +95,9 @@ namespace FinalProject.Controllers
         {
             Ability ability = ORM.Abilities.Find("Fire Breath");
             List<string> GoodAt = new List<string>();
+            List<Item> SuggestedItems = new List<Item>();
+            int maxValue = 0;
+
 
             foreach (var crime in ability.GetType().GetProperties())
             {
@@ -135,7 +112,6 @@ namespace FinalProject.Controllers
                 }
             }
 
-            int maxValue = 0;
 
             foreach (Crime crime in ORM.Crimes)
             {
@@ -148,14 +124,18 @@ namespace FinalProject.Controllers
                         if (current > maxValue)
                         {
                             ViewBag.Name = (string)property.Name;
+                            ViewBag.Img = "..\\Pictures\\StateImages\\" + crime.State + ".jpg";
                             ViewBag.State = crime;
                             maxValue = current;
+                            SuggestedItems.Add(ORM.Items.Where(i => i.Crime == (string)property.Name && (i.Availability == "good" || i.Availability == "both")).FirstOrDefault());
                         }
                     }
                 }
             }
+
             ViewBag.Max = maxValue;
             ViewBag.Ability = ability.Ability1;
+            ViewBag.SuggestedItems = SuggestedItems.Distinct();
 
             return View();
         }
