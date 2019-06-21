@@ -106,6 +106,7 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Cost" Type="money" Nullable="false" />
           <Property Name="Availability" Type="nvarchar" MaxLength="10" />
+          <Property Name="Crime" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Mentors">
           <Key>
@@ -297,6 +298,7 @@
           <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Availability" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserItems" Relationship="franchiseDbModel.FK__UserItems__ItemI__66603565" FromRole="Item" ToRole="UserItem" />
+          <Property Name="Crime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="franchiseDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
@@ -565,6 +567,7 @@
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="franchiseDbModel.Item">
               <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="Crime" ColumnName="Crime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
