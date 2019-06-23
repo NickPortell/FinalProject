@@ -1,5 +1,7 @@
 
+
 ﻿// T4 code generation is enabled for model 'F:\GrandCircus\Documents\FinalProject\FinalProject\Models\franchiseDb.edmx'. 
+
 
 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
