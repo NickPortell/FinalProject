@@ -1,4 +1,7 @@
-﻿// T4 code generation is enabled for model 'C:\Users\jduca\Desktop\FinalProject\FinalProject\FinalProject\Models\franchiseDb.edmx'. 
+
+﻿// T4 code generation is enabled for model 'F:\GrandCircus\Documents\FinalProject\FinalProject\Models\franchiseDb.edmx'. 
+
+
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
