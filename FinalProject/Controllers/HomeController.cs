@@ -151,6 +151,13 @@ namespace FinalProject.Controllers
 
 
         }
+<<<<<<< HEAD
+
+        public ActionResult Test()
+        {
+            return View();
+        }
+=======
         //////////////////////
         ///How we got states//
         //////////////////////
@@ -210,6 +217,7 @@ namespace FinalProject.Controllers
             }
             return null;
         }*/
+>>>>>>> 380ab660a043ffff0d4ebedeee9357a06fadc770
     }
 }
 
