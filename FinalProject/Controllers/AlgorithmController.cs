@@ -21,7 +21,7 @@ namespace FinalProject.Controllers
             if (user.C_Hero_Villain_ == true)
             {
                 #region Generate a List of crime names that the chosen Ability by the User is 'Good' at or has a 'True' relationship with
-                Ability ability = user.Ability;
+                Ability ability = ORM.Abilities.Find(user.SuperPower);
 
                 List<string> GoodAt = new List<string>();
 
@@ -88,7 +88,7 @@ namespace FinalProject.Controllers
             else
             {
                 #region Generate a List of crime names that the chosen Ability by the User is 'Bad' at or has a 'false' relationship with
-                Ability ability = user.Ability;
+                Ability ability = ORM.Abilities.Find(user.SuperPower);
 
                 List<string> BadAt = new List<string>();
 
