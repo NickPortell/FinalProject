@@ -270,6 +270,7 @@
     <Content Include="Pictures\Items\VolcanoLair.jpg" />
     <Content Include="Pictures\secret1.png" />
     <Content Include="Pictures\Super2.jpg" />
+    <Content Include="Pictures\secret2.png" />
     <Content Include="Pictures\super3.jpg" />
     <Content Include="Pictures\super4.jpg" />
     <Content Include="Pictures\tablet.png" />
