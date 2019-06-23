@@ -5,79 +5,82 @@
     ViewBag.Title = "UserInfo";
 }
 
-<h2>User Info</h2>
 
 <body>
 
     <img id="backgroundPic" src="../Pictures/super3.jpg" alt="yooooo" />
     <div style="position:relative">
-        <img id="foregroundPic" src="..\Pictures\secret2.jpg" alt="yooooo" />
+        <img id="foregroundPic" src="..\Pictures\secret2.png" alt="yooooo" />
+        <div id="statePic" style="position:absolute; left:208px; top:47px;">
+            @if (Model.StateId != null)
+            {
+                <img id="statepic" src=@ViewBag.Img alt="NOT SHOWING" />
+            }
+            else
+            {
+                <img id="statepic" src="..\Pictures\QuestionMark.png" alt="NOT SHOWING" />
+
+            }
+        </div>
+        <div style="position:absolute; left:82px; top:290px">
+            @if (Model.SuperPower == null || Model.C_Hero_Villain_ == null || Model.Mentor == null || Model.Personality == null)
+            {
+            <a href="../Home/UserProfile" class="btn-success">Add Profile Info</a>
+
+            }
+        </div>
         <div style="position:absolute; left:82px; top:323px">
-            YOOOO! What's Good?! Whatever, who cares.
+            <p>@Model.SuperName</p>
         </div>
-        <div style="position:absolute; left:82px; top:359px">
-            YOOOO! What's Good?! Whatever, who cares.
+        <div style="position:absolute; left:82px; top:356px">
+            @if (Model.SuperPower != null)
+            {
+                <p>Superpower: @Model.SuperPower</p>
+            }
         </div>
-        <div style="position:absolute; left:82px; top:395px">
-            YOOOO! What's Good?! Whatever, who cares.
+        <div style="position:absolute; left:82px; top:389px">
+            @if (Model.C_Hero_Villain_ != null)
+            {
+                if (Model.C_Hero_Villain_ == true)
+                {
+                    <p>Hero/Villain: Hero</p>
+                }
+                else
+                {
+                    <p>Hero/Villain: Villain</p>
+                }
+            }
+        </div>
+        <div style="position:absolute; left:82px; top:421px">
+            @if (Model.Mentor != null)
+            {
+                <p>Mentor: @Model.Mentor.Name</p>
+            }
+        </div>
+        <div style="position:absolute; left:82px; top:454px">
+            @if (Model.Personality != null)
+            {
+                <p>Personality: @Model.Personality</p>
+            }
+        </div>
+        <div style="position:absolute; left:82px; top:486px">
+            @if (Model.StateId != null)
+            {
+                <p>Location:  @Model.StateId</p>
+            }
+            else
+            {
+                <p>Location: <a href="../Map/Index" class="btn-success">Choose Location!</a></p>
+
+            }
         </div>
     </div>
 </body>
 
-<div class="col-md-3" id="ProductBox">
-    <h3>@Model.SuperName</h3>
-
-
-    @if (Model.SuperPower == null || Model.C_Hero_Villain_ == null || Model.Mentor == null || Model.Personality == null)
-    {
-        <p>Add Profile Info: <a href="../Home/UserProfile" class="btn-success">GOOOOO!</a></p>
-
-    }
-    
-    @if (Model.SuperPower != null)
-    {
-        <p>Superpower: @Model.SuperPower</p>
-    }
-    
-    @if (Model.C_Hero_Villain_ != null)
-    {
-        if (Model.C_Hero_Villain_ == true)
-        {
-            <p>Hero/Villain: Hero</p>
-        }
-        else
-        {
-            <p>Hero/Villain: Villain</p>
-        }
-    }
-
-    @if (Model.Mentor != null)
-    {
-        <p>Mentor: @Model.Mentor.Name</p>
-    }
-    
-    @if (Model.Personality != null)
-    {
-        <p>Personality: @Model.Personality</p>
-    }
-
-    @if (Model.StateId != null)
-    {
-        <p>Location:  @Model.StateId</p>
-    }
-    else
-    {
-        <p>Location: <a href="../Map/Index" class="btn-success">Choose Location!</a></p>
-
-    }
-</div>
-
-
-
 <style>
 
     /*body {
-        
+
         background-size: cover;
         color: darkorange;
     }*/
@@ -95,7 +98,7 @@
     }
 
     #foregroundPic {
-        position: fixed;
+        position: relative;
         background-size: contain;
         display: inline-block;
         float: left;
@@ -104,5 +107,11 @@
         margin-right: auto;
     }
 
-
+    #statepic {
+        transform: rotate(6deg);
+        z-index: 101;
+        width:240px;
+        height:220px;
+        
+    }
 </style>

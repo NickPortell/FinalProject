@@ -23,7 +23,13 @@ namespace FinalProject.Controllers
         {
             string userId = User.Identity.GetUserId();
 
-            return View(ORM.AspNetUsers.Find(userId));
+            AspNetUser user = ORM.AspNetUsers.Find(userId);
+            if (user.StateId != null)
+            {
+                ViewBag.Img = "..\\Pictures\\StateImages\\" + user.StateId + ".jpg";
+            }
+
+            return View(user);
         }
 
         public ActionResult Inventory()
