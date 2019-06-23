@@ -269,6 +269,7 @@
     <Content Include="Pictures\Items\UpliftingSpeechKit.jpg" />
     <Content Include="Pictures\Items\VolcanoLair.jpg" />
     <Content Include="Pictures\secret1.png" />
+    <Content Include="Pictures\super3.jpg" />
     <Content Include="Pictures\tablet.png" />
     <Content Include="Pictures\StateImages\AK.jpg" />
     <Content Include="Pictures\StateImages\AL.jpg" />
@@ -364,9 +365,7 @@
     <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
-
     <Content Include="Views\Home\Test.cshtml" />
-
     <Content Include="Views\Algorithm\TestAlgorithm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
