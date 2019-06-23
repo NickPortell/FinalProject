@@ -5,11 +5,9 @@
     ViewBag.Title = "UserInfo";
 }
 
-<h2>User Info</h2>
+<h2>@Model.SuperName</h2>
 <div class="col-md-3" id="ProductBox">
-    <h3>@Model.SuperName</h3>
-
-
+    
     @if (Model.SuperPower == null || Model.C_Hero_Villain_ == null || Model.Mentor == null || Model.Personality == null)
     {
         <p>Add Profile Info: <a href="../Home/UserProfile" class="btn-success">GOOOOO!</a></p>
