@@ -1,51 +1,78 @@
-
 ﻿
 <body>
 
     @*<img id="backgroundPic" src="..\Pictures\Dossier.png" alt="yooooo" />*@
     <div style="position:relative">
         <img id="foregroundPic" src="..\Pictures\secret1.png" alt="yooooo" />
-        <div style="position:absolute; left:185px; top:230px">
-            YOOOO! What's Good?! Whatever, who cares.
-        </div>
+            <div style="position:absolute; left:185px; top:230px">
+                <a href="..\Account\Login">Login</a>
+            </div>
         <div style="position:absolute; left:185px; top:266px">
-            YOOOO! What's Good?! Whatever, who cares.
+            <img id="powPic" src="..\Pictures\pow.png" alt="Pow" />
+            <a href="..\Account\Register">Register</a>
         </div>
+
         <div style="position:absolute; left:185px; top:302px">
-            YOOOO! What's Good?! Whatever, who cares.
+            @if (ViewBag.ProfileLink != null)
+            {
+                if (Model.SuperName != null)
+                {
+                    <a href=@ViewBag.ProfileLink>Your Profile!</a>
+                }
+                else
+                {
+                    <a href="..\Home\UserProfile"> Create Profile!</a>
+                }
+            }
         </div>
     </div>
 </body>
 
 <style>
 
-    body {
-       
+    html, body {
         background-image: url('../../Pictures/super3.jpg');
         background-size: cover;
+        height: 100%;
     }
 
-    .container body-content {
+    /*.container body-content {
+                    position: fixed;
+                }*/
+
+    #backgroundPic {
         position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        z-index: -1;
     }
 
-    #backgroundPic{
-        position:fixed;
-        left:0;
-        top:0;
-        width:100%;
-        height:auto;
-        z-index:-1;
-    }
     #foregroundPic {
-        position:fixed;
+        position: fixed;
         background-size: contain;
         display: inline-block;
-        float:left;
+        float: left;
         width: 500px;
         margin-left: auto;
         margin-right: auto;
     }
-   
+    .navbar-inverse .navbar-nav > li > a {
+        color: darkred;
+        background-color: goldenrod;
+        border-bottom-color: darkgoldenrod;
+        border-style:groove;
+    }
 
+    #powPic {
+        width: 5px;
+        height: 5px;
+        background: red;
+        transition: width 2s;
+    }
+    #powPic:hover{
+        width:300px;
+        height:300px;
+    }
 </style>

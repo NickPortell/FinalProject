@@ -15,6 +15,16 @@ namespace FinalProject.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            bool isLoggedIn = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+
+            if (isLoggedIn)
+            {
+                ViewBag.ProfileLink = "..\\Home\\UserInfo";
+                string userId = User.Identity.GetUserId();
+
+                AspNetUser user = ORM.AspNetUsers.Find(userId);
+                return View(user);
+            }
 
             return View();
         }
@@ -164,7 +174,7 @@ namespace FinalProject.Controllers
         //{
         //    Crime crime = new Crime(states[i]);
         //    ORM.Crimes.Add(crime);
-        
+
         /* public Crime(string state)
          {
              JObject allData = JObject.Parse(GetStateData(state));
