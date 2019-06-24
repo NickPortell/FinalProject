@@ -15,6 +15,16 @@ namespace FinalProject.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            bool isLoggedIn = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+
+            if (isLoggedIn)
+            {
+                ViewBag.ProfileLink = "..\\Home\\UserInfo";
+                string userId = User.Identity.GetUserId();
+
+                AspNetUser user = ORM.AspNetUsers.Find(userId);
+                return View(user);
+            }
 
             return View();
         }
@@ -31,20 +41,7 @@ namespace FinalProject.Controllers
 
             return View(user);
         }
-
-        public ActionResult Inventory()
-        {
-            ViewBag.Title = "Inventory";
-            string userId = User.Identity.GetUserId();
-            if (userId == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            List<UserItem> items = ORM.UserItems.Where(u => u.UserId == userId).ToList();
-            return View(items);
-        }
-
-
+        
         public ActionResult UserProfile()
         {
             #region Drop-down for superpowers
@@ -177,7 +174,7 @@ namespace FinalProject.Controllers
         //{
         //    Crime crime = new Crime(states[i]);
         //    ORM.Crimes.Add(crime);
-        
+
         /* public Crime(string state)
          {
              JObject allData = JObject.Parse(GetStateData(state));
