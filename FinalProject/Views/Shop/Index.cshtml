@@ -1,45 +1,77 @@
 ﻿@using FinalProject.Models
 <h1>@ViewBag.Title</h1>
 <h1>@ViewBag.Message</h1>
-<div class="container">
-    <img src="~/Pictures/tablet.png" id="tablet"/>
-    <div id="t">
-        <table class="table">
-            <tr>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Cost</th>
-                <th>Availability</th>
-            </tr>
-            @foreach (Item item in Model)
-            {
+<div class="supercontainer">
+    <div class="containerX">
+        <img src="~/Pictures/tablet.png" id="tablet" />
+        <div id="t">
+            <table class="table">
                 <tr>
-                    <td>@item.ItemName <form action="../Shop/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
-                    <td>@item.Description</td>
-                    <td>$@item.Cost.ToString("0.00")</td>
-                    <td>@item.Availability</td>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Cost</th>
+                    <th>Availability</th>
                 </tr>
-            }
-        </table>
+                @foreach (Item item in Model)
+                {
+                    <tr>
+                        <td>@item.ItemName <form action="../Shop/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
+                        <td>@item.Description</td>
+                        <td>$@item.Cost.ToString("0.00")</td>
+                        <td>@item.Availability</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="containerX" style="top:10%">
+        -->
+        <img src="~/Pictures/tablet.png" id="tablet" />
+        <div id="t">
+            <table class="table">
+                <caption><h3>Inventory</h3></caption>
+                <tr>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                </tr>
+                @foreach (UserItem item in ViewBag.UserItems)
+                {
+                    <tr>
+                        <td>@item.Item.ItemName</td>
+                        <td>@item.Item.Description</td>
+                        <td>@item.Quantity</td>
+                    </tr>
+                }
+            </table>
+        </div>
     </div>
 </div>
 <style>
-    .container {
+    .supercontainer{
+        display:inline-block;
+        margin:0;
+        padding:0;
+    }
+    .containerX {
         position: relative;
+        display: inline-block;
+        float: left;
     }
-    #t{
-        width:47%;
-        position:absolute;
-        overflow:scroll;
-        overflow-x:hidden;
-        top:10%;
-        left:10%;
-        padding-top:5%;
-        height:80%;
-        
+
+    #t {
+        width: 47%;
+        position: absolute;
+        overflow: scroll;
+        overflow-x: hidden;
+        top: 10%;
+        left: 10%;
+        padding-top: 5%;
+        height: 80%;
     }
-    #tablet{
-        width:65%;
-        height:65%;
+
+    #tablet {
+        width: 65%;
+        height: 65%;
     }
 </style>

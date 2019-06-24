@@ -20,7 +20,14 @@ namespace FinalProject.Controllers
             }
 
             ViewBag.Message = message;
+            ViewBag.UserItems = Inventory();
             return View(ORM.Items.ToList());
+        }
+        
+        public List<UserItem> Inventory()
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            return ORM.UserItems.Where(i => i.UserId == user.Id).ToList();
         }
 
         public bool CanPurchase(Item item, int quantity)
