@@ -31,20 +31,7 @@ namespace FinalProject.Controllers
 
             return View(user);
         }
-
-        public ActionResult Inventory()
-        {
-            ViewBag.Title = "Inventory";
-            string userId = User.Identity.GetUserId();
-            if (userId == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            List<UserItem> items = ORM.UserItems.Where(u => u.UserId == userId).ToList();
-            return View(items);
-        }
-
-
+        
         public ActionResult UserProfile()
         {
             #region Drop-down for superpowers
