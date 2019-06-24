@@ -4,7 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD
       <Diagram DiagramId="c2ef23dd7862445892b603c8ed76a9dd" Name="Diagram1" ZoomLevel="72">
+=======
+      <Diagram DiagramId="c2ef23dd7862445892b603c8ed76a9dd" Name="Diagram1" ZoomLevel="37">
+>>>>>>> 3a2fc2c55980405cc4e8adf056254f2fb3072385
         <EntityTypeShape EntityType="franchiseDbModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="franchiseDbModel.Crime" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
 
