@@ -9,7 +9,7 @@
 <body>
 
     <img id="backgroundPic" src="../Pictures/super3.jpg" alt="yooooo" />
-    <div style="position:relative">
+    <div style="position:relative" id="foreground">
         <img id="foregroundPic" src="..\Pictures\secret2.png" alt="yooooo" />
         <div id="statePic" style="position:absolute; left:208px; top:47px;">
             @if (Model.StateId != null)
@@ -79,11 +79,10 @@
 
 <style>
 
-    /*body {
-
-        background-size: cover;
-        color: darkorange;
-    }*/
+   html, body {
+        height:100%;
+        background-size:cover;
+    }
     .container body-content {
         position: fixed;
     }
@@ -105,8 +104,9 @@
         width: 500px;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom:0;
     }
-
+    
     #statepic {
         transform: rotate(6deg);
         z-index: 101;
