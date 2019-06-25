@@ -1,36 +1,53 @@
 ﻿@using FinalProject.Models
 <h1>@ViewBag.Title</h1>
 <h1>@ViewBag.Message</h1>
-<table class="table">
-    <tr>
-        <th>Item</th>
-        <th>Description</th>
-        <th>Cost</th>
-        <th>Availability</th>
-    </tr>
-    @foreach (Item item in Model)
-    {
-        <tr>
-            <td>@item.ItemName <form action="../Shop/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
-            <td>@item.Description</td>
-            <td>$@item.Cost.ToString("0.00")</td>
-            <td>@item.Availability</td>
-        </tr>
+<div class="row">
+    <div class="column">
+        <table class="table" style="border-right:thin; border-right-color:black; border-right-style:solid; overflow:hidden scroll">
+            <caption><h3>Shop</h3></caption>
+            <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Cost</th>
+            </tr>
+            @foreach (Item item in Model)
+            {
+                <tr>
+                    <td>@item.ItemName <form action="../Shop/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
+                    <td>@item.Description</td>
+                    <td>$@item.Cost.ToString("0.00")</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="column">
+        <table class="table" style="overflow:hidden scroll;">
+            <caption><h3>Inventory</h3></caption>
+            <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Sell</th>
+            </tr>
+            @foreach (UserItem item in ViewBag.UserItems)
+            {
+                <tr>
+                    <td>@item.Item.ItemName</td>
+                    <td>@item.Item.Description</td>
+                    <td>@item.Quantity</td>
+                    <td><form action="../Shop/Sell"><input type="number" min="1" max="@item.Quantity" value="1" name="quantity" required /> <button type="submit" name="item" value="@item.UserItemId">Sell</button></form></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<style>
+    .row {
+        display: flex;
     }
-</table>
-<table class="table">
-    <caption><h3>Inventory</h3></caption>
-    <tr>
-        <th>Item</th>
-        <th>Description</th>
-        <th>Quantity</th>
-    </tr>
-    @foreach (UserItem item in ViewBag.UserItems)
-    {
-        <tr>
-            <td>@item.Item.ItemName</td>
-            <td>@item.Item.Description</td>
-            <td>@item.Quantity</td>
-        </tr>
+
+    .column {
+        flex: 50%;
     }
-</table>
+</style>
