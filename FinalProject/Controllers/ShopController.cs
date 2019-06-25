@@ -38,6 +38,11 @@ namespace FinalProject.Controllers
                 return false;
             }
 
+            if (quantity < 1)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -76,6 +81,11 @@ namespace FinalProject.Controllers
                 ORM.SaveChanges();
 
                 return RedirectToAction("Index", new { message = $"{item.ItemName} purchased successfully." });
+            }
+
+            if(quantity < 1)
+            {
+                return RedirectToAction("Index", new { message = "Invalid quantity!" });
             }
 
             return RedirectToAction("Index", new { message = $"You don't have the funds for {item.ItemName}!" });
