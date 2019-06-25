@@ -14,14 +14,20 @@ namespace FinalProject.Controllers
 
         public ActionResult Index(string message)
         {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             if (User.Identity.GetUserId() == null)
             {
                 return RedirectToAction("Login", "Account");
             }
+            if(user.C_Hero_Villain_ == null)
+            {
+                return RedirectToAction("UserInfo", "Home");
+            }
 
             ViewBag.Message = message;
             ViewBag.UserItems = Inventory();
-            return View(ORM.Items.ToList());
+
+            return View(ORM.Items.Where(i => i.Availability == ((bool)user.C_Hero_Villain_ ? "good" : "bad") || i.Availability == "both"));
         }
         
         public List<UserItem> Inventory()
