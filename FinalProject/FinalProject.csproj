@@ -371,6 +371,7 @@
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Algorithm\TestAlgorithm.cshtml" />
+    <Content Include="Views\Algorithm\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
