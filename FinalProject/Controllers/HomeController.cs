@@ -32,11 +32,77 @@ namespace FinalProject.Controllers
         public ActionResult UserInfo()
         {
             string userId = User.Identity.GetUserId();
-
             AspNetUser user = ORM.AspNetUsers.Find(userId);
+
+            #region Drop-down for State names
+            List<Crime> crimeList = ORM.Crimes.ToList();
+            List<string> stateNames = new List<string>();
+
+
+            foreach (Crime s in crimeList)
+            {
+                stateNames.Add(s.State);
+            }
+
+            ViewBag.StateNames = stateNames;
+
+
             if (user.StateId != null)
             {
                 ViewBag.Img = "..\\Pictures\\StateImages\\" + user.StateId + ".jpg";
+            }
+            #endregion
+
+            #region Drop-down for superpowers
+            List<Ability> list = ORM.Abilities.ToList();
+            List<string> powerNames = new List<string>();
+
+            foreach (Ability power in list)
+            {
+                powerNames.Add(power.Ability1);
+            }
+
+            ViewBag.PowerNames = powerNames;
+            #endregion
+
+            #region Drop-down for personalities
+
+            List<Mentor> mentors = ORM.Mentors.ToList();
+            List<string> personalities = new List<string>();
+            List<string> personalitiesDistinct = new List<string>();
+
+
+            foreach (Mentor men in mentors)
+            {
+                personalities.Add(men.Personality);
+                personalitiesDistinct = personalities.Distinct().ToList();
+            }
+
+            ViewBag.Personalities = personalitiesDistinct;
+
+            #endregion
+
+            #region Drop-down for mentors
+            List<Mentor> badMentors = ORM.Mentors.Where(u => u.Hero_Villain == false).ToList();
+            List<Mentor> goodMentors = ORM.Mentors.Where(u => u.Hero_Villain == true).ToList();
+
+            if ((bool)user.C_Hero_Villain_)
+            {
+
+                ViewBag.Mentors = goodMentors;
+            }
+            else
+            {
+
+                ViewBag.Mentors = badMentors;
+            }
+            #endregion
+
+            //ViewBag.State = ORM.Crimes.Find(user.StateId);
+
+            if(user.Mentor != null)
+            {
+                ViewBag.UserMentor = user.Mentor.Name;
             }
 
             return View(user);
@@ -143,16 +209,11 @@ namespace FinalProject.Controllers
 
         public ActionResult SaveMentor(int Id)
         {
-
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             ORM.AspNetUsers.Attach(user);
             user.MentorId = Id;
             ORM.SaveChanges();
             return RedirectToAction("UserInfo");
-
-
-
-
         }
 
 
@@ -220,7 +281,38 @@ namespace FinalProject.Controllers
             }
             return null;
         }*/
-
+        public ActionResult SaveSuperName(string superName)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ORM.AspNetUsers.Attach(user);
+            user.SuperName = superName;
+            ORM.SaveChanges();
+            return RedirectToAction("UserInfo");
+        }
+        public ActionResult SavePersonality(string personality)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ORM.AspNetUsers.Attach(user);
+            user.Personality = personality;
+            ORM.SaveChanges();
+            return RedirectToAction("UserInfo");
+        }
+        public ActionResult SaveSuperPower(string superPower)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ORM.AspNetUsers.Attach(user);
+            user.SuperPower = superPower;
+            ORM.SaveChanges();
+            return RedirectToAction("UserInfo");
+        }
+        public ActionResult SaveAlliance(string HeroVillain)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ORM.AspNetUsers.Attach(user);
+            user.C_Hero_Villain_ = bool.Parse(HeroVillain);
+            ORM.SaveChanges();
+            return RedirectToAction("UserInfo");
+        }
     }
 }
 
