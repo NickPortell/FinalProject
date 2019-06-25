@@ -16,7 +16,7 @@
             <div class="superName">
                 @if (ViewBag.User.SuperName == null)
                 {
-                    <input type="text" name="SuperName" placeholder="Super Name" />
+                    <input type="text" name="SuperName" placeholder="Super Name" required/>
                 }
                 else
                 {
@@ -116,10 +116,11 @@
 
 <style>
     html, body {
-        background-image: url(https://www.newsshopper.co.uk/resources/images/8152990.jpg?display=1&htype=0&type=responsive-gallery);
+        
+        background-image: url('../../Pictures/gothamblue.jpg'); 
         background-repeat: no-repeat;
         background-size: cover;
-        height:100%;
+        height: 100%;
         color: darkorange;
     }
 
