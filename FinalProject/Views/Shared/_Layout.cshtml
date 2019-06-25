@@ -26,11 +26,11 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (User.Identity.GetUserId() != null)
                     {
-                        <li>@Html.ActionLink("Inventory", "Inventory", "Home")</li>
                         <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
                         <li>@Html.ActionLink("Location", "Index", "Map")</li>
                         <li>@Html.ActionLink("Profile-Info", "UserInfo", "Home")</li>
                         <li>@Html.ActionLink("Edit-Profile", "UserProfile", "Home")</li>
+                        <li>@Html.ActionLink("Franchise", "Index", "Algorithm")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
