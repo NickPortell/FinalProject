@@ -247,6 +247,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>franchiseDb.cs</LastGenOutput>
     </Content>
+    <Content Include="Pictures\blue-abstract-comic-cartoon-sunlight-background_68708-237.jpg" />
     <Content Include="Pictures\DeskBackGround.jpg" />
     <Content Include="Pictures\Dossier.png" />
     <Content Include="Pictures\Items\AIVirtualAssistant.jpg" />
