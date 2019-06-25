@@ -247,8 +247,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>franchiseDb.cs</LastGenOutput>
     </Content>
-    <Content Include="Pictures\blue-abstract-comic-cartoon-sunlight-background_68708-237.jpg" />
-
     <Content Include="Pictures\citycomic.jpg" />
     <Content Include="Pictures\DeskBackGround.jpg" />
     <Content Include="Pictures\Dossier.png" />
@@ -370,9 +368,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\UserInfo.cshtml" />
-    <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
-    <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Algorithm\TestAlgorithm.cshtml" />
     <Content Include="Views\Algorithm\Index.cshtml" />
@@ -385,6 +381,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Map\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
