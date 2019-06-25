@@ -23,13 +23,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                     @if (User.Identity.GetUserId() != null)
                     {
                         <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
-                        <li>@Html.ActionLink("Location", "Index", "Map")</li>
                         <li>@Html.ActionLink("Profile-Info", "UserInfo", "Home")</li>
-                        <li>@Html.ActionLink("Edit-Profile", "UserProfile", "Home")</li>
                         <li>@Html.ActionLink("Franchise", "Index", "Algorithm")</li>
                     }
                 </ul>
