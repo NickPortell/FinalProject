@@ -1,0 +1,76 @@
+﻿
+
+<body>
+    <div>
+        @if (ViewBag.Ability != null && ViewBag.Name != null &&
+            ViewBag.State.State != null && ViewBag.Img != null &&
+            ViewBag.Max != null && ViewBag.SuggestedItems != null)
+        {
+            <p>The Ability: @ViewBag.Ability</p>
+
+            <p>The Crime: @ViewBag.Name</p>
+            <p>The State with Highest rate of that crime: @ViewBag.State.State</p>
+            <p>
+                <img id="foregroundPic" src=@ViewBag.Img alt="@ViewBag.State.State" />
+            </p>
+
+            <p>Crime Rate (per 100K): @ViewBag.Max</p>
+            <table class="table">
+                <tr>
+                    <th>stuff</th>
+                    <th>stuff</th>
+                    <th>stuff</th>
+                    <th>stuff</th>
+                    <th>stuff</th>
+                </tr>
+                @foreach (var item in ViewBag.SuggestedItems)
+                {
+                    <tr>
+                        <td>@item.ItemName</td>
+                        <td>@item.Description</td>
+                        <td>@item.Cost</td>
+                        <td>@item.Availability</td>
+                        <td>@item.Crime</td>
+                    </tr>
+                }
+            </table>
+        }
+
+        <form action="../Algorithm/Index" method="post">
+            <button type="submit" value="@Model">Get Suggested Franchise</button>
+        </form>
+    </div>
+</body>
+<style>
+
+    html, body {
+        background-image: url('../../Pictures/super3.jpg');
+        height: 100%;
+        background-size: cover;
+        color: darkgoldenrod;
+    }
+
+    .container body-content {
+        position: fixed;
+    }
+
+    #backgroundPic {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        z-index: -1;
+    }
+
+    #foregroundPic {
+        position: relative;
+        background-size: contain;
+        display: inline-block;
+        float: left;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0;
+    }
+</style>
