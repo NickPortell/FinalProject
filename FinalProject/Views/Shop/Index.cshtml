@@ -1,9 +1,8 @@
 ﻿@using FinalProject.Models
-<h1>@ViewBag.Title</h1>
-<h1>@ViewBag.Message</h1>
+<h1 style="color:white">@ViewBag.Message</h1>
 <div class="row">
-    <div class="column">
-        <table class="table" style="border-right:thin; border-right-color:black; border-right-style:solid; overflow:hidden scroll">
+    <div class="column" id="table">
+        <table class="table" id="tablet">
             <caption><h3>Shop</h3></caption>
             <tr>
                 <th>Item</th>
@@ -20,8 +19,8 @@
             }
         </table>
     </div>
-    <div class="column">
-        <table class="table" style="overflow:hidden scroll;">
+    <div class="column" id="table">
+        <table class="table" id="tablet">
             <caption><h3>Inventory</h3></caption>
             <tr>
                 <th>Item</th>
@@ -43,11 +42,32 @@
 </div>
 
 <style>
+    html, body {
+        background-image: url('../../Pictures/gothamblue.jpg');
+        background-size: contain;
+    }
+    #table{
+        background-image:url(../../Pictures/tablet.png);
+        background-size:contain;
+        background-repeat:no-repeat;
+    }
     .row {
         display: flex;
     }
-
+    #tablet {
+        margin: 12%;
+        width: 75%;
+        display: block !important;
+        height: 75% !important;
+        overflow:scroll;
+    }
     .column {
         flex: 50%;
+        height:900px !important;
     }
+
+    /*/.tablet{
+        width:auto;
+        height:auto;
+    }*/
 </style>
