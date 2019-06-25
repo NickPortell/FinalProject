@@ -248,8 +248,11 @@
       <LastGenOutput>franchiseDb.cs</LastGenOutput>
     </Content>
     <Content Include="Pictures\blue-abstract-comic-cartoon-sunlight-background_68708-237.jpg" />
+
+    <Content Include="Pictures\citycomic.jpg" />
     <Content Include="Pictures\DeskBackGround.jpg" />
     <Content Include="Pictures\Dossier.png" />
+    <Content Include="Pictures\gothamblue.jpg" />
     <Content Include="Pictures\Items\AIVirtualAssistant.jpg" />
     <Content Include="Pictures\Items\AmbitiousNewsRepresentative.jpg" />
     <Content Include="Pictures\Items\ArrestKit.jpg" />
