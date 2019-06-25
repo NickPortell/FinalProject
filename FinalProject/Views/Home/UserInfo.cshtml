@@ -5,7 +5,6 @@
     ViewBag.Title = "UserInfo";
 }
 
-
 <body>
     <div style="position:relative" id="foreground">
         <img id="foregroundPic" src="..\Pictures\secret2.png" alt="yooooo" />
@@ -22,16 +21,16 @@
         </div>
         <div style="position:absolute; left:82px; top:311px">
             <form action="../Home/SaveSuperName" method="post" id="Profile6">
-                Super Name: 
+                Super Name:
                 @if (Model.SuperName != null)
                 {
-                    <input id="name" type="Text" name="superName" placeholder="@Model.SuperName" />
+                    <input id="name" type="Text" name="superName" placeholder="@Model.SuperName" value="@Model.SuperName"/>
                 }
                 else
                 {
                     <input id="name" type="Text" name="superName" placeholder="Enter your SUPERNAME!" />
                 }
-                <input type="submit" value="Select" class="btn-success"/>
+                <input type="submit" value="Select" class="btn-success" />
             </form>
         </div>
         <div style="position:absolute; left:82px; top:345px">
@@ -48,8 +47,9 @@
                 }
                 else
                 {
-                    <select name="superPower" form="Profile">
-                        <option value="" disabled selected>@Model.SuperPower</option>
+                    <label for="superpower">@Model.SuperPower</label>
+                    <select id="superpower" name="superPower" form="Profile">
+                        @*<option value="@Model.SuperPower" disabled selected>@Model.SuperPower</option>*@
 
                         @for (int i = 0; i < ViewBag.PowerNames.Count; i++)
                         {
@@ -91,30 +91,39 @@
             </form>
         </div>
         <div style="position:absolute; left:82px; top:410px">
+            @if (Model.C_Hero_Villain_ != null)
+            {
             <form action="../Home/SaveMentor" method="post" id="Profile5">
                 Mentor:
-                @if (Model.Mentor == null)
+                @if (ViewBag.Mentors != null)
                 {
-                    <select name="Id" form="Profile5">
-                        @for (int i = 0; i < ViewBag.Mentors.Count; i++)
-                        {
-                            <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
-                        }
-                    </select>
-                }
-                else
-                {
-                    <select name="Id" form="Profile5">
-                        <option value="" disabled selected>@ViewBag.UserMentor</option>
+                    if (Model.Mentor == null)
+                    {
+                        <select name="Id" form="Profile5">
+                            @for (int i = 0; i < ViewBag.Mentors.Count; i++)
+                            {
+                                <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
+                            }
+                        </select>
+                        <input type="submit" value="Select" class="btn-success" />
+                    }
+                    else
+                    {
+                        <label for="mentor">@Model.Mentor.Name</label>
+                        <select name="Id" form="Profile5" required id="mentor">
+                            @*<option value="@ViewBag.UserMentor.Id" disabled selected hidden>@ViewBag.UserMentor.Name</option>*@
 
-                        @for (int i = 0; i < ViewBag.Mentors.Count; i++)
-                        {
-                            <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
-                        }
-                    </select>
+                            @for (int i = 0; i < ViewBag.Mentors.Count; i++)
+                            {
+                                <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
+                            }
+                        </select>
+                        <input type="submit" value="Select" class="btn-success" />
+                    }
                 }
-                <input type="submit" value="Select" class="btn-success" />
             </form>
+            }
+            <p>@ViewBag.Error</p>
         </div>
         <div style="position:absolute; left:82px; top:442px">
             <form action="../Home/SavePersonality" method="post" id="Profile3">
@@ -130,8 +139,9 @@
                 }
                 else
                 {
-                    <select name="personality" form="Profile3">
-                        <option value="" disabled selected>@Model.Personality</option>
+                    <label for="person">@Model.Personality</label>
+                    <select id="person" name="personality" form="Profile3">
+                        @*<option value="@Model.Personality" disabled selected>@Model.Personality</option>*@
 
                         @for (int i = 0; i < ViewBag.Personalities.Count; i++)
                         {
@@ -156,8 +166,9 @@
                 }
                 else
                 {
-                    <select name="state" form="Profile4">
-                        <option value="" disabled selected>@Model.StateId</option>
+                    <label for="StateId">@Model.StateId</label>
+                    <select id="stateId" name="state" form="Profile4">
+                        @*<option value="@Model.StateId" disabled selected>@Model.StateId</option>*@
 
                         @for (int i = 0; i < ViewBag.StateNames.Count; i++)
                         {
@@ -208,5 +219,8 @@
         z-index: 101;
         width: 240px;
         height: 220px;
+    }
+    #superpower{
+        width:15%;
     }
 </style>

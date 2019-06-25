@@ -15,23 +15,17 @@ namespace FinalProject.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            bool isLoggedIn = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
 
-            if (isLoggedIn)
-            {
-                ViewBag.ProfileLink = "..\\Home\\UserInfo";
-                string userId = User.Identity.GetUserId();
-
-                AspNetUser user = ORM.AspNetUsers.Find(userId);
-                return View(user);
-            }
-
-            return View();
+            return RedirectToAction("UserInfo");
         }
 
         public ActionResult UserInfo()
         {
             string userId = User.Identity.GetUserId();
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             AspNetUser user = ORM.AspNetUsers.Find(userId);
 
             #region Drop-down for State names
@@ -86,64 +80,28 @@ namespace FinalProject.Controllers
             List<Mentor> badMentors = ORM.Mentors.Where(u => u.Hero_Villain == false).ToList();
             List<Mentor> goodMentors = ORM.Mentors.Where(u => u.Hero_Villain == true).ToList();
 
-            if ((bool)user.C_Hero_Villain_)
+            if (user.C_Hero_Villain_ != null)
             {
-
-                ViewBag.Mentors = goodMentors;
+                if ((bool)user.C_Hero_Villain_)
+                {
+                    ViewBag.Mentors = goodMentors;
+                }
+                else
+                {
+                    ViewBag.Mentors = badMentors;
+                }
             }
             else
             {
-
-                ViewBag.Mentors = badMentors;
+                ViewBag.Error = "Please Choose an Alliance";
             }
             #endregion
 
-            //ViewBag.State = ORM.Crimes.Find(user.StateId);
-
-            if(user.Mentor != null)
+            if (user.Mentor != null)
             {
-                ViewBag.UserMentor = user.Mentor.Name;
+                ViewBag.UserMentor = user.Mentor;
             }
-
             return View(user);
-        }
-        
-        public ActionResult UserProfile()
-        {
-            #region Drop-down for superpowers
-            List<Ability> list = ORM.Abilities.ToList();
-            List<string> powerNames = new List<string>();
-
-            foreach (Ability power in list)
-            {
-                powerNames.Add(power.Ability1);
-            }
-
-            ViewBag.PowerNames = powerNames;
-            #endregion
-
-            #region Drop-down for personalities
-            List<Mentor> mentors = ORM.Mentors.ToList();
-            List<string> personalities = new List<string>();
-            List<string> personalitiesDistinct = new List<string>();
-
-
-            foreach (Mentor m in mentors)
-            {
-                personalities.Add(m.Personality);
-                personalitiesDistinct = personalities.Distinct().ToList();
-            }
-
-            ViewBag.Personalities = personalitiesDistinct;
-
-            #endregion
-
-            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
-
-            ViewBag.User = user;
-
-
-            return View();
         }
 
         public ActionResult GetMentors(string SuperPower, string Personality, string SuperName, string HeroVillain)
@@ -207,14 +165,7 @@ namespace FinalProject.Controllers
             return View("UserProfile", m);
         }
 
-        public ActionResult SaveMentor(int Id)
-        {
-            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
-            ORM.AspNetUsers.Attach(user);
-            user.MentorId = Id;
-            ORM.SaveChanges();
-            return RedirectToAction("UserInfo");
-        }
+        
 
 
         public ActionResult Test()
@@ -310,6 +261,14 @@ namespace FinalProject.Controllers
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             ORM.AspNetUsers.Attach(user);
             user.C_Hero_Villain_ = bool.Parse(HeroVillain);
+            ORM.SaveChanges();
+            return RedirectToAction("UserInfo");
+        }
+        public ActionResult SaveMentor(string Id)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ORM.AspNetUsers.Attach(user);
+            user.MentorId = int.Parse(Id);
             ORM.SaveChanges();
             return RedirectToAction("UserInfo");
         }
