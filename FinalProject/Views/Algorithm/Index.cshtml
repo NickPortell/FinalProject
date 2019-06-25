@@ -6,13 +6,13 @@
             ViewBag.State.State != null && ViewBag.Img != null &&
             ViewBag.Max != null && ViewBag.SuggestedItems != null)
         {
-            <div class="line-1 anim-typewriter">
-
-                <p>The Ability: @ViewBag.Ability</p>
-                <p>The Crime: @ViewBag.Name</p>
-                <p>The State with Highest rate of that crime: @ViewBag.State.State - Crime Rate (per 100K): @ViewBag.Max </p>
-            </div>
+        <div class="text1">
+            <p class="line-1 anim-typewriter">The Ability: @ViewBag.Ability</p>
+            <p>The Crime: @ViewBag.Name</p>
+            <p>The State with Highest rate of that crime: @ViewBag.State.State - Crime Rate (per 100K): @ViewBag.Max </p>
+        </div>
             <p>
+
                 <img id="foregroundPic" src=@ViewBag.Img alt="@ViewBag.State.State" />
             </p>
 
@@ -87,53 +87,15 @@
         border: solid;
     }
 
-    /*.text1{
+    .text1{
         margin-top: 15px;
         font-weight:bold;
         font-family:'Copperplate Gothic';
         font-size: 20px;
 
-    }*/
-
-    .line-1 {
-        position: relative;
-        top: 50%;
-        width: 24em;
-        /*margin-top: 15px;*/
-        margin: 0 auto;
-        border-right: 2px solid rgba(255,255,255,.75);
-        font-size: 20px;
-        text-align: left;
-        white-space: nowrap;
-        overflow: hidden;
-        transform: translateY(-50%);
     }
 
-    /* Animation */
-    .anim-typewriter {
-        animation: typewriter 4s steps(44) 1s 1 normal both, blinkTextCursor 500ms steps(44) infinite normal;
-        animation-iteration-count: 1;
-    }
-
-    @@keyframes typewriter {
-        from {
-            width: 0;
-        }
-
-        to {
-            width: 24em;
-        }
-    }
-
-    @@keyframes blinkTextCursor {
-        from {
-            border-right-color: rgba(255,255,255,.75);
-        }
-
-        to {
-            border-right-color: transparent;
-        }
-    }
+    
 </style>
 
 
