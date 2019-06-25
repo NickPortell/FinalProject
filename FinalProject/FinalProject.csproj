@@ -269,6 +269,8 @@
     <Content Include="Pictures\Items\SwissArmyKnife.jpg" />
     <Content Include="Pictures\Items\UpliftingSpeechKit.jpg" />
     <Content Include="Pictures\Items\VolcanoLair.jpg" />
+    <Content Include="Pictures\pow.png" />
+    <Content Include="Pictures\QuestionMark.png" />
     <Content Include="Pictures\secret1.png" />
     <Content Include="Pictures\Super2.jpg" />
     <Content Include="Pictures\secret2.png" />
@@ -365,12 +367,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\UserInfo.cshtml" />
-    <Content Include="Views\Home\Inventory.cshtml" />
     <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Algorithm\TestAlgorithm.cshtml" />
+    <Content Include="Views\Algorithm\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

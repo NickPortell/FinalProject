@@ -10,23 +10,61 @@ namespace FinalProject.Controllers
 {
     public class ShopController : Controller
     {
-        franchiseDbEntities ORM = new franchiseDbEntities();
+        private franchiseDbEntities ORM = new franchiseDbEntities();
 
         public ActionResult Index(string message)
         {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             if (User.Identity.GetUserId() == null)
             {
                 return RedirectToAction("Login", "Account");
             }
+            if(user.C_Hero_Villain_ == null)
+            {
+                return RedirectToAction("UserInfo", "Home");
+            }
 
             ViewBag.Message = message;
-            return View(ORM.Items.ToList());
+            ViewBag.UserItems = Inventory();
+
+            return View(ORM.Items.Where(i => i.Availability == ((bool)user.C_Hero_Villain_ ? "good" : "bad") || i.Availability == "both"));
+        }
+        
+        public List<UserItem> Inventory()
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            return ORM.UserItems.Where(i => i.UserId == user.Id).ToList();
+        }
+
+        public ActionResult Sell(int item, int quantity)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            UserItem selling = ORM.UserItems.Find(item);
+            if (quantity < 1 || quantity > selling.Quantity)
+            {
+                return RedirectToAction("Index", new { message = "Invalid quantity!" });
+            }
+            ORM.UserItems.Attach(selling);
+            ORM.AspNetUsers.Attach(user);
+            selling.Quantity -= quantity;
+            user.Bitcoin += selling.Item.Cost * (decimal)0.4;
+            if(selling.Quantity <= 0)
+            {
+                ORM.UserItems.Remove(selling);
+            }
+            ORM.SaveChanges();
+            return RedirectToAction("Index", new { message = $"Item has been sold." });
         }
 
         public bool CanPurchase(Item item, int quantity)
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             if (item.Cost * quantity > user.Bitcoin)
+            {
+                return false;
+            }
+
+            if (quantity < 1)
             {
                 return false;
             }
@@ -69,6 +107,11 @@ namespace FinalProject.Controllers
                 ORM.SaveChanges();
 
                 return RedirectToAction("Index", new { message = $"{item.ItemName} purchased successfully." });
+            }
+
+            if(quantity < 1)
+            {
+                return RedirectToAction("Index", new { message = "Invalid quantity!" });
             }
 
             return RedirectToAction("Index", new { message = $"You don't have the funds for {item.ItemName}!" });

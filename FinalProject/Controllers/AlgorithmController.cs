@@ -153,7 +153,7 @@ namespace FinalProject.Controllers
                 #endregion
             }
 
-            return View();
+            return View(user);
         }
 
         public ActionResult TestAlgorithm()
