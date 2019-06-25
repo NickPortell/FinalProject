@@ -10,7 +10,7 @@ namespace FinalProject.Controllers
 {
     public class ShopController : Controller
     {
-        franchiseDbEntities ORM = new franchiseDbEntities();
+        private franchiseDbEntities ORM = new franchiseDbEntities();
 
         public ActionResult Index(string message)
         {
@@ -28,6 +28,26 @@ namespace FinalProject.Controllers
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             return ORM.UserItems.Where(i => i.UserId == user.Id).ToList();
+        }
+
+        public ActionResult Sell(int item, int quantity)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            UserItem selling = ORM.UserItems.Find(item);
+            if (quantity < 1 || quantity > selling.Quantity)
+            {
+                return RedirectToAction("Index", new { message = "Invalid quantity!" });
+            }
+            ORM.UserItems.Attach(selling);
+            ORM.AspNetUsers.Attach(user);
+            selling.Quantity -= quantity;
+            user.Bitcoin += selling.Item.Cost * (decimal)0.4;
+            if(selling.Quantity <= 0)
+            {
+                ORM.UserItems.Remove(selling);
+            }
+            ORM.SaveChanges();
+            return RedirectToAction("Index", new { message = $"Item has been sold." });
         }
 
         public bool CanPurchase(Item item, int quantity)
