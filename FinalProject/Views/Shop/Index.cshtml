@@ -11,10 +11,12 @@
             </tr>
             @foreach (Item item in Model)
             {
+                string pic = string.Join("", item.ItemName.Split(' '));
+                pic = pic + ".jpg";
                 <tr>
-                    <td>@item.ItemName <form action="../Shop/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
+                    <td>@item.ItemName <img src="~/Pictures/Items/@pic" style="width:5em; height:5em;"/></td>
                     <td>@item.Description</td>
-                    <td>$@item.Cost.ToString("0.00")</td>
+                    <td>$@item.Cost.ToString("0.00") <form action="../Shop/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
                 </tr>
             }
         </table>
@@ -30,8 +32,10 @@
             </tr>
             @foreach (UserItem item in ViewBag.UserItems)
             {
+                string pic = string.Join("", item.Item.ItemName.Split(' '));
+                pic = pic + ".jpg";
                 <tr>
-                    <td>@item.Item.ItemName</td>
+                    <td>@item.Item.ItemName <img src="~/Pictures/Items/@pic" style="width:5em; height:5em;" /></td>
                     <td>@item.Item.Description</td>
                     <td>@item.Quantity</td>
                     <td><form action="../Shop/Sell"><input type="number" min="1" max="@item.Quantity" value="1" name="quantity" required /> <button type="submit" name="item" value="@item.UserItemId">Sell</button></form></td>
@@ -63,7 +67,7 @@
     }
     .column {
         flex: 50%;
-        height:900px !important;
+        height: 64em !important;
     }
 
     /*/.tablet{
