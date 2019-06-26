@@ -27,6 +27,7 @@
                     </tr>
                     @foreach (var item in ViewBag.SuggestedItems)
                     {
+
                         int owned = 0;
                         foreach(var inv in ViewBag.Inventory)
                         {
@@ -42,11 +43,13 @@
                             @*<td>@item.Availability</td>*@
                             <td>@item.Crime</td>
                         </tr>
+
                     }
                 </table>
             </div>
 
         }
+
     </div>
     <div>
         <form action="../Algorithm/SaveFranchise" method="post">
@@ -59,6 +62,7 @@
             }
             <input type="submit" value="Get Suggested Franchise" class="btn-default" />
         </form>
+
     </div>
 </body>
 <style>
@@ -69,7 +73,8 @@
         background-image: url('../../Pictures/gothamdark.jpg');
         height: 100%;
         background-size: cover;
-        color: darkgoldenrod;
+        color: darkorange;
+        font-family: 'Copperplate Gothic';
     }
 
     .container body-content {
@@ -116,6 +121,7 @@
         background-color: deepskyblue;
         border-bottom-color: deepskyblue;
         border-style: groove;
+        font-family: 'Copperplate Gothic';
     }
 </style>
 
