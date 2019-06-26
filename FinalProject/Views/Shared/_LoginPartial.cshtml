@@ -13,7 +13,7 @@
     {
     <li>@Html.ActionLink("$" + ((double)user.Bitcoin).ToString("0.00"), "Index", "Shop", routeValues: null, htmlAttributes: new { title = "Money" })</li>
     <li>
-        @Html.ActionLink("Hello " + user.SuperName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        @Html.ActionLink(user.SuperName + "'s Account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
     </li>
     }
     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
