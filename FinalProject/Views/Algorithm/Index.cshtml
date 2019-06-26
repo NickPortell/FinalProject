@@ -27,13 +27,14 @@
                     </tr>
                     @foreach (var item in ViewBag.SuggestedItems)
                     {
-                        <tr>
-                            <td>@item.ItemName</td>
-                            <td>@item.Description</td>
-                            <td>@item.Cost</td>
-                            @*<td>@item.Availability</td>*@
-                            <td>@item.Crime</td>
-                        </tr>
+                    <tr>
+                        <td>@item.ItemName</td>
+                        <td>@item.Description</td>
+                        
+                        <td>$@item.Cost.ToString("0.00")</td>
+                        @*<td>@item.Availability</td>*@
+                        <td>@item.Crime</td>
+                    </tr>
                     }
                 </table>
             </div>
@@ -54,6 +55,7 @@
         height: 100%;
         background-size: cover;
         color: darkorange;
+        font-family: 'Copperplate Gothic';
     }
 
     .container body-content {
@@ -99,6 +101,7 @@
         background-color: deepskyblue;
         border-bottom-color: deepskyblue;
         border-style: groove;
+        font-family: 'Copperplate Gothic';
     }
     
 </style>
