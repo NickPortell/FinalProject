@@ -301,5 +301,62 @@ namespace FinalProject.Controllers
             return View();
         }
 
+        #region purcahse stuff
+        public ActionResult Purchase(int id, int quantity)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+
+            Item item = ORM.Items.Find(id);
+
+            if (CanPurchase(item, quantity))
+            {
+                if (ORM.UserItems.Any(i => i.ItemId == item.Id && i.UserId == user.Id))
+                {
+                    UserItem existing = ORM.UserItems.Where(i => i.ItemId == item.Id && i.UserId == user.Id).FirstOrDefault();
+                    ORM.UserItems.Attach(existing);
+                    existing.Quantity += quantity;
+                }
+                else
+                {
+                    UserItem newItem = new UserItem
+                    {
+                        Item = item,
+                        AspNetUser = user,
+                        ItemId = item.Id,
+                        UserId = user.Id,
+                        Quantity = quantity
+                    };
+                    ORM.UserItems.Add(newItem);
+                }
+                user.Bitcoin -= item.Cost * quantity;
+                ORM.SaveChanges();
+
+                return RedirectToAction("Index", new { message = $"{item.ItemName} purchased successfully." });
+            }
+
+            if (quantity < 1)
+            {
+                return RedirectToAction("Index", new { message = "Invalid quantity!" });
+            }
+
+            return RedirectToAction("Index", new { message = $"You don't have the funds for {item.ItemName}!" });
+        }
+
+        public bool CanPurchase(Item item, int quantity)
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            if (item.Cost * quantity > user.Bitcoin)
+            {
+                return false;
+            }
+
+            if (quantity < 1)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        #endregion
     }
 }

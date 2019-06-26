@@ -30,7 +30,7 @@
                         <tr>
                             <td>@item.ItemName</td>
                             <td>@item.Description</td>
-                            <td>@item.Cost</td>
+                            <td>$@item.Cost.ToString("0.00") <form action="../Algorithm/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
                             @*<td>@item.Availability</td>*@
                             <td>@item.Crime</td>
                         </tr>
