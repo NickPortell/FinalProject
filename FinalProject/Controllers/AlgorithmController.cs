@@ -168,6 +168,12 @@ namespace FinalProject.Controllers
             ORM.SaveChanges();
             return RedirectToAction("../Home/UserInfo");
         }
+        public ActionResult ViewUserFranchise()
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ViewBag.Img = "..\\Pictures\\StateImages\\"+ user.StateId + ".jpg";
+            return View(user);
+        }
 
         #region purcahse stuff
         public ActionResult Purchase(int id, int quantity)
