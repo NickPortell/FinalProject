@@ -373,6 +373,7 @@
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Algorithm\Index.cshtml" />
+    <Content Include="Views\Algorithm\ViewUserFranchise.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

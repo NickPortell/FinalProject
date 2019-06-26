@@ -8,6 +8,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @using FinalProject.Models
 
 </head>
 <body>
@@ -28,7 +29,14 @@
                     {
                         <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
                         <li>@Html.ActionLink("Profile-Info", "UserInfo", "Home")</li>
-                        <li>@Html.ActionLink("Franchise", "Index", "Algorithm")</li>
+                        using (franchiseDbEntities ORM = new franchiseDbEntities())
+                        {
+                            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+                            if (user.Personality != null && user.SuperPower != null)
+                            {
+                                <li>@Html.ActionLink("Your Franchise", "ViewUserFranchise", "Algorithm")</li>
+                            }
+                        }
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

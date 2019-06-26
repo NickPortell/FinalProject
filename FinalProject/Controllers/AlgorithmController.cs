@@ -167,5 +167,12 @@ namespace FinalProject.Controllers
             return RedirectToAction("../Home/UserInfo");
         }
 
+        public ActionResult ViewUserFranchise()
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ViewBag.Img = "..\\Pictures\\StateImages\\"+ user.StateId + ".jpg";
+            return View(user);
+        }
+
     }
 }

@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "ViewUserFranchise";
+}
+
+@using FinalProject.Models
+
+
+@{
+    ViewBag.Title = "UserInfo";
+}
+
+<body>
+    <div style="position:relative" id="foreground">
+        <img id="foregroundPic" src="..\Pictures\secret2.png" alt="yooooo" />
+        <div id="statePic" style="position:absolute; left:208px; top:47px;">
+                <img id="statepic" src="@ViewBag.Img" alt="NOT SHOWING" />  
+        </div>
+        <div style="position:absolute; left:82px; top:322px">
+                Super Name: @Model.SuperName
+        </div>
+        <div style="position:absolute; left:82px; top:388px">
+                Super Power: @Model.SuperPower
+        </div>
+        <div style="position:absolute; left:82px; top:453px">
+                Alliance: @Model.C_Hero_Villain_
+        </div>
+        <div style="position:absolute; left:82px; top:517px">
+                    Mentor: @Model.Mentor.Name
+        </div>
+        <div style="position:absolute; left:82px; top:582px">
+                Personality: @Model.Personality
+        </div>
+        <div style="position:absolute; left:82px; top:648px">
+                Location: @Model.StateId
+        </div>
+    </div>
+</body>
+
+<style>
+
+    html, body {
+        background-image: url('../../Pictures/gothamblue.jpg');
+        height: 100%;
+        background-size: cover;
+        color: darkorange;
+    }
+
+    .container body-content {
+        position: fixed;
+    }
+
+    #foregroundPic {
+        position: relative;
+        background-size: contain;
+        display: inline-block;
+        float: left;
+        width: 500px;
+        margin-bottom: 0;
+    }
+
+    #foreground {
+        margin-left: 25%;
+        margin-right: auto;
+    }
+
+    #statepic {
+        transform: rotate(6deg);
+        z-index: 101;
+        width: 240px;
+        height: 220px;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: midnightblue;
+        background-color: deepskyblue;
+        border-bottom-color: deepskyblue;
+        border-style: groove;
+    }
+</style>
