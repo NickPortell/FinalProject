@@ -145,7 +145,6 @@ namespace FinalProject.Controllers
 
             ViewBag.User = user;
 
-
             List<Mentor> badMentors = ORM.Mentors.Where(u => u.Hero_Villain == false).ToList();
             List<Mentor> goodMentors = ORM.Mentors.Where(u => u.Hero_Villain == true).ToList();
 
