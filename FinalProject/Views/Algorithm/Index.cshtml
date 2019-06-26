@@ -6,11 +6,11 @@
             ViewBag.State.State != null && ViewBag.Img != null &&
             ViewBag.Max != null && ViewBag.SuggestedItems != null)
         {
-        <div class="text1">
-            <p class="line-1 anim-typewriter">The Ability: @ViewBag.Ability</p>
-            <p>The Crime: @ViewBag.Name</p>
-            <p>The State with Highest rate of that crime: @ViewBag.State.State - Crime Rate (per 100K): @ViewBag.Max </p>
-        </div>
+            <div class="text1">
+                <p class="line-1 anim-typewriter">The Ability: @ViewBag.Ability</p>
+                <p>The Crime: @ViewBag.Name</p>
+                <p>The State with Highest rate of that crime: @ViewBag.State.State - Crime Rate (per 100K): @ViewBag.Max </p>
+            </div>
             <p>
 
                 <img id="foregroundPic" src=@ViewBag.Img alt="@ViewBag.State.State" />
@@ -39,9 +39,17 @@
             </div>
 
         }
-
-        <form action="../Algorithm/Index" method="post">
-            <button type="submit" value="@Model">Get Suggested Franchise</button>
+    </div>
+    <div>
+        <form action="../Algorithm/SaveFranchise" method="post">
+            <input type="hidden" name="location" value="@ViewBag.State.State" />
+            <p>Here are some very complementary Mentors for your line of work: </p>
+            @foreach (var mentor in ViewBag.Mentors)
+            {
+                <label for="@mentor">@mentor </label>
+                <input id="@mentor" type="radio" name="mentorName" value="@mentor" />
+            }
+            <input type="submit" value="Get Suggested Franchise" class="btn-default" />
         </form>
     </div>
 </body>
@@ -87,21 +95,20 @@
         border: solid;
     }
 
-    .text1{
+    .text1 {
         margin-top: 15px;
         font-weight:bold;
         color: deepskyblue;
         font-family:'Copperplate Gothic';
         font-size: 20px;
-
     }
+
     .navbar-inverse .navbar-nav > li > a {
         color: midnightblue;
         background-color: deepskyblue;
         border-bottom-color: deepskyblue;
         border-style: groove;
     }
-    
 </style>
 
 
