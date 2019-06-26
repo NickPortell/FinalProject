@@ -19,25 +19,25 @@
 
             }
         </div>
-        <div style="position:absolute; left:82px; top:311px">
+        <div style="position:absolute; left:82px; top:322px">
             <form action="../Home/SaveSuperName" method="post" id="Profile6">
                 Super Name:
-                @if (Model.SuperName != null)
-                {
-
-                    <input id="name" type="Text" name="superName" placeholder="@Model.SuperName" value="@Model.SuperName"/>
-
-                }
-                else
-                {
-                    <input id="name" type="Text" name="superName" placeholder="Enter your SUPERNAME!" />
-                }
-                <input type="submit" value="Select" class="btn-success" />
+                <br />
+                    @if (Model.SuperName != null)
+                    {
+                        <input id="name" type="Text" name="superName" placeholder="@Model.SuperName" value="@Model.SuperName" />
+                    }
+                    else
+                    {
+                        <input id="name" type="Text" name="superName" placeholder="Enter your SUPERNAME!" />
+                    }
+                    <input type="submit" value="Select" class="btn-success" />
             </form>
         </div>
-        <div style="position:absolute; left:82px; top:345px">
+        <div style="position:absolute; left:82px; top:388px">
             <form action="../Home/SaveSuperPower" method="post" id="Profile">
                 Super Power:
+                <br />
                 @if (ViewBag.PowerNames == null)
                 {
                     <select name="superPower" form="Profile">
@@ -62,9 +62,10 @@
                 <input type="submit" value="Select" class="btn-success" />
             </form>
         </div>
-        <div style="position:absolute; left:82px; top:377px">
+        <div style="position:absolute; left:82px; top:453px">
             <form action="../Home/SaveAlliance" method="post" id="Profile2">
                 Alliance:
+                <br />
                 @if (Model.C_Hero_Villain_ != null)
                 {
                     if (Model.C_Hero_Villain_)
@@ -92,11 +93,12 @@
                 <input type="submit" value="Select" class="btn-success" />
             </form>
         </div>
-        <div style="position:absolute; left:82px; top:410px">
+        <div style="position:absolute; left:82px; top:517px">
             @if (Model.C_Hero_Villain_ != null)
             {
             <form action="../Home/SaveMentor" method="post" id="Profile5">
                 Mentor:
+                <br />
                 @if (ViewBag.Mentors != null)
                 {
                     if (Model.Mentor == null)
@@ -127,9 +129,10 @@
             }
             <p>@ViewBag.Error</p>
         </div>
-        <div style="position:absolute; left:82px; top:442px">
+        <div style="position:absolute; left:82px; top:582px">
             <form action="../Home/SavePersonality" method="post" id="Profile3">
                 Personality:
+                <br />
                 @if (ViewBag.Personalities == null)
                 {
                     <select name="personality" form="Profile3">
@@ -154,9 +157,10 @@
                 <input type="submit" value="Select" class="btn-success" />
             </form>
         </div>
-        <div style="position:absolute; left:82px; top:475px">
+        <div style="position:absolute; left:82px; top:648px">
             <form action="../Map/SaveState" method="post" id="Profile4">
                 Location:
+                <br />
                 @if (ViewBag.StateNames == null)
                 {
                     <select name="state" form="Profile4">
@@ -181,6 +185,11 @@
                 <input type="submit" value="Select" class="btn-success" />
             </form>
         </div>
+    </div>
+    <div id="button1">
+        <form action="../Algorithm/Index" method="post">
+            <button type="submit" value="@Model">Suggested Franchise</button>
+        </form>
     </div>
 </body>
 
@@ -210,11 +219,13 @@
         position: relative;
         background-size: contain;
         display: inline-block;
-        float: left;
+        float:left;
         width: 500px;
-        margin-left: auto;
-        margin-right: auto;
         margin-bottom: 0;
+    }
+    #foreground {
+        margin-left: 25%;
+        margin-right: auto;
     }
 
     #statepic {
@@ -223,14 +234,16 @@
         width: 240px;
         height: 220px;
     }
-    #superpower{
-        width:15%;
-    }
     .navbar-inverse .navbar-nav > li > a {
-        color: darkred;
+        color: midnightblue;
         background-color: deepskyblue;
         border-bottom-color: deepskyblue;
         border-style: groove;
         font-family: 'Copperplate Gothic';
+    }
+    #button1{
+        position:absolute;
+        left:187px;
+        width:93px;
     }
 </style>

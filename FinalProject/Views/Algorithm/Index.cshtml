@@ -6,17 +6,17 @@
             ViewBag.State.State != null && ViewBag.Img != null &&
             ViewBag.Max != null && ViewBag.SuggestedItems != null)
         {
-        <div class="text1">
-            <p class="line-1 anim-typewriter">The Ability: @ViewBag.Ability</p>
-            <p>The Crime: @ViewBag.Name</p>
-            <p>The State with Highest rate of that crime: @ViewBag.State.State - Crime Rate (per 100K): @ViewBag.Max </p>
-        </div>
+            <div class="text1">
+                <p class="line-1 anim-typewriter">The Ability: @ViewBag.Ability</p>
+                <p>The Crime: @ViewBag.Name</p>
+                <p>The State with Highest rate of that crime: @ViewBag.State.State - Crime Rate (per 100K): @ViewBag.Max </p>
+            </div>
             <p>
 
                 <img id="foregroundPic" src=@ViewBag.Img alt="@ViewBag.State.State" />
             </p>
-
             <div class="table1">
+                <h3 style="padding-top:23%">@ViewBag.Message</h3>
                 <table class="table">
                     <tr>
                         <th>Product</th>
@@ -27,23 +27,42 @@
                     </tr>
                     @foreach (var item in ViewBag.SuggestedItems)
                     {
-                    <tr>
-                        <td>@item.ItemName</td>
-                        <td>@item.Description</td>
-                        
-                        <td>$@item.Cost.ToString("0.00")</td>
-                        @*<td>@item.Availability</td>*@
-                        <td>@item.Crime</td>
-                    </tr>
+
+                        int owned = 0;
+                        foreach(var inv in ViewBag.Inventory)
+                        {
+                            if(inv.ItemId == item.Id)
+                            {
+                                owned = inv.Quantity;
+                            }
+                        }
+                        <tr>
+                            <td>@item.ItemName Owned: @owned</td>
+                            <td>@item.Description</td>
+                            <td>$@item.Cost.ToString("0.00") <form action="../Algorithm/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
+                            @*<td>@item.Availability</td>*@
+                            <td>@item.Crime</td>
+                        </tr>
+
                     }
                 </table>
             </div>
 
         }
 
-        @*<form action="../Algorithm/Index" method="post">
-            <button type="submit" value="@Model">Get Suggested Franchise</button>
-        </form>*@
+    </div>
+    <div>
+        <form action="../Algorithm/SaveFranchise" method="post">
+            <input type="hidden" name="location" value="@ViewBag.State.State" />
+            <p>Suggested mentors for your line of work: </p>
+            @foreach (var mentor in ViewBag.Mentors)
+            {
+                <label for="@mentor">@mentor </label>
+                <input id="@mentor" type="radio" name="mentorName" value="@mentor" />
+            }
+            <input type="submit" value="Get Suggested Franchise" class="btn-default" />
+        </form>
+
     </div>
 </body>
 <style>
@@ -51,7 +70,7 @@
     @@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
 
     html, body {
-        background-image: url('../../Pictures/gothamblue.jpg');
+        background-image: url('../../Pictures/gothamdark.jpg');
         height: 100%;
         background-size: cover;
         color: darkorange;
@@ -89,21 +108,21 @@
         border: solid;
     }
 
-    .text1{
+    .text1 {
         margin-top: 15px;
         font-weight:bold;
+        color: deepskyblue;
         font-family:'Copperplate Gothic';
         font-size: 20px;
-
     }
+
     .navbar-inverse .navbar-nav > li > a {
-        color: darkred;
+        color: midnightblue;
         background-color: deepskyblue;
         border-bottom-color: deepskyblue;
         border-style: groove;
         font-family: 'Copperplate Gothic';
     }
-    
 </style>
 
 
