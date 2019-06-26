@@ -39,7 +39,7 @@ namespace FinalProject.Controllers
             ViewBag.StateNames = stateNames;
 
             ViewBag.State = ORM.Crimes.Find(state);
-           
+
             return View("../Map/Index"); 
         }
 

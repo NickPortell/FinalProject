@@ -175,7 +175,7 @@ namespace FinalProject.Controllers
             return View(user);
         }
 
-        #region purcahse stuff
+        #region purchase stuff
         public ActionResult Purchase(int id, int quantity)
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());

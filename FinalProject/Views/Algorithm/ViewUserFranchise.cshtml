@@ -4,39 +4,68 @@
 }
 
 @using FinalProject.Models
+@using Microsoft.AspNet.Identity;
 
 
 @{
     ViewBag.Title = "UserInfo";
 }
+@using (franchiseDbEntities ORM = new franchiseDbEntities())
+{
+    Crime crime = ORM.Crimes.Find(Model.StateId);
+    AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+    ViewBag.UserItems = ORM.UserItems.Where(uI => uI.UserId == user.Id).ToList();
 
-<body>
-    <div style="position:relative" id="foreground">
-        <img id="foregroundPic" src="..\Pictures\secret2.png" alt="yooooo" />
-        <div id="statePic" style="position:absolute; left:208px; top:47px;">
-                <img id="statepic" src="@ViewBag.Img" alt="NOT SHOWING" />  
-        </div>
-        <div style="position:absolute; left:82px; top:322px">
-                Super Name: @Model.SuperName
-        </div>
-        <div style="position:absolute; left:82px; top:388px">
-                Super Power: @Model.SuperPower
-        </div>
-        <div style="position:absolute; left:82px; top:453px">
-                Alliance: @Model.C_Hero_Villain_
-        </div>
-        <div style="position:absolute; left:82px; top:517px">
-                    Mentor: @Model.Mentor.Name
-        </div>
-        <div style="position:absolute; left:82px; top:582px">
-                Personality: @Model.Personality
-        </div>
-        <div style="position:absolute; left:82px; top:648px">
+    <h3 id="person" style="text-align:center">@Model.SuperName's Franchise</h3>
+    <body>
+        <div style="position:relative" id="foreground">
+            <img id="foregroundPic" src="..\Pictures\secret2.png" alt="yooooo" />
+            <div id="statePic" style="position:absolute; left:208px; top:47px;">
+                <img id="statepic" src="@ViewBag.Img" alt="NOT SHOWING" />
+            </div>
+            <div style="position:absolute; left:82px; top:348px">
+                Mentor: @Model.Mentor.Name
+            </div>
+            <div style="position:absolute; left:82px; top:384px">
                 Location: @Model.StateId
-        </div>
-    </div>
-</body>
+            </div>
+            <fieldset id="stats">
+                <div id="stats" class="table" style="position:absolute; left:550px; top:300px">
+                    **Location Details**
+                    <table>
+                        @foreach (var column in crime.GetType().GetProperties())
+                        {
+                            if (column.Name != "State" && column.Name != "AspNetUsers" && column.Name != "Rape_Revised")
+                            {
+                                <tr>
+                                    <td>@column.Name: @column.GetValue(crime)</td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </fieldset>
 
+        </div>
+        <fieldset id="stats">
+            <div id="stats" class="table" style="position:absolute; left:15px; top:350px">
+                **Current Inventory**
+                <table>
+                    @foreach (UserItem item in ViewBag.UserItems)
+                    {
+                        string pic = string.Join("", item.Item.ItemName.Split(' '));
+                        pic = pic + ".jpg";
+                        <tr class="container">
+                            <td><img class="image" id="Img" src="~/Pictures/Items/@pic" style="width:5em; height:5em;" /></td>
+                            <td>@item.Item.ItemName </td>
+                            <td>@item.Quantity</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </fieldset>
+    </body>
+}
 <style>
 
     html, body {
@@ -76,5 +105,16 @@
         background-color: deepskyblue;
         border-bottom-color: deepskyblue;
         border-style: groove;
+    }
+
+    #stats {
+        background-color: deepskyblue;
+        color: black;
+        width: 250px;
+        text-align: left;
+        border: solid black 3px;
+    }
+    #person{
+      
     }
 </style>

@@ -51,8 +51,6 @@
                 {
                     <label for="superpower">@Model.SuperPower</label>
                     <select id="superpower" name="superPower" form="Profile">
-                        @*<option value="@Model.SuperPower" disabled selected>@Model.SuperPower</option>*@
-
                         @for (int i = 0; i < ViewBag.PowerNames.Count; i++)
                         {
                             <option value="@ViewBag.PowerNames[i]">@ViewBag.PowerNames[i]</option>
