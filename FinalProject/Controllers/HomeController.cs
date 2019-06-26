@@ -173,6 +173,7 @@ namespace FinalProject.Controllers
             return View();
         }
 
+        #region Code-First for Crimes Table from API
         //////////////////////
         ///How we got states//
         //////////////////////
@@ -232,6 +233,9 @@ namespace FinalProject.Controllers
             }
             return null;
         }*/
+        #endregion
+
+
         public ActionResult SaveSuperName(string superName)
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
