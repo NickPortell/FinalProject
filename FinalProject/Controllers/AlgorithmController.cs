@@ -14,7 +14,7 @@ namespace FinalProject.Controllers
         private franchiseDbEntities ORM = new franchiseDbEntities();
 
         // GET: Algorithm
-        public ActionResult Index()
+        public ActionResult Index(string message = null)
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
 
@@ -151,6 +151,8 @@ namespace FinalProject.Controllers
                 #endregion
             }
 
+            ViewBag.Message = message;
+            ViewBag.Inventory = Inventory();
             return View(user);
         }
 
@@ -222,6 +224,12 @@ namespace FinalProject.Controllers
             }
 
             return true;
+        }
+
+        public List<UserItem> Inventory()
+        {
+            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            return ORM.UserItems.Where(i => i.UserId == user.Id).ToList();
         }
         #endregion
     }
