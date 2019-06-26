@@ -114,9 +114,7 @@
                     else
                     {
                         <label for="mentor">@Model.Mentor.Name</label>
-                        <select name="Id" form="Profile5" required id="mentor">
-                            @*<option value="@ViewBag.UserMentor.Id" disabled selected hidden>@ViewBag.UserMentor.Name</option>*@
-
+                        <select name="Id" form="Profile5" required id="mentor">                           
                             @for (int i = 0; i < ViewBag.Mentors.Count; i++)
                             {
                                 <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
@@ -145,9 +143,7 @@
                 else
                 {
                     <label for="person">@Model.Personality</label>
-                    <select id="person" name="personality" form="Profile3">
-                        @*<option value="@Model.Personality" disabled selected>@Model.Personality</option>*@
-
+                    <select id="person" name="personality" form="Profile3">                       
                         @for (int i = 0; i < ViewBag.Personalities.Count; i++)
                         {
                             <option value="@ViewBag.Personalities[i]">@ViewBag.Personalities[i]</option>
@@ -173,9 +169,7 @@
                 else
                 {
                     <label for="StateId">@Model.StateId</label>
-                    <select id="stateId" name="state" form="Profile4">
-                        @*<option value="@Model.StateId" disabled selected>@Model.StateId</option>*@
-
+                    <select id="stateId" name="state" form="Profile4">                        
                         @for (int i = 0; i < ViewBag.StateNames.Count; i++)
                         {
                             <option value="@ViewBag.StateNames[i]">@ViewBag.StateNames[i]</option>
