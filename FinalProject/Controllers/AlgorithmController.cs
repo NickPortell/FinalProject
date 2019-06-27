@@ -70,7 +70,7 @@ namespace FinalProject.Controllers
 
                 #region User chooses personality, what mentors they are good with
 
-                List<Mentor> mentors = ORM.Mentors.ToList();
+                List<Mentor> mentors = ORM.Mentors.Where(m => (bool)m.Hero_Villain == true).ToList();
                 List<string> GoodWith = new List<string>();
 
                 foreach (Mentor m in mentors)
@@ -136,7 +136,7 @@ namespace FinalProject.Controllers
 
                 #region User chooses personality, what mentors they are good with
 
-                List<Mentor> mentors = ORM.Mentors.ToList();
+                List<Mentor> mentors = ORM.Mentors.Where(m => (bool)m.Hero_Villain == false).ToList();
                 List<string> GoodWith = new List<string>();
 
                 foreach (Mentor m in mentors)

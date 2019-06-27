@@ -2,6 +2,8 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,6 +29,7 @@ namespace FinalProject.Controllers
                 return RedirectToAction("Login", "Account");
             }
             AspNetUser user = ORM.AspNetUsers.Find(userId);
+            ORM.AspNetUsers.Attach(user);
 
             #region Drop-down for State names
             List<Crime> crimeList = ORM.Crimes.ToList();
@@ -101,71 +104,30 @@ namespace FinalProject.Controllers
             {
                 ViewBag.UserMentor = user.Mentor;
             }
+
+            if(TempData["errorPersonality"] != null)
+            {
+                ViewBag.errorPersonality = TempData["errorPersonality"];
+            }
+            if (TempData["errorSuperPower"] != null)
+            {
+                ViewBag.errorSuperPower = TempData["errorSuperPower"];
+            }
+            if (TempData["errorAlliance"] != null)
+            {
+                ViewBag.errorAlliance = TempData["errorAlliance"];
+            }
+            if (TempData["errorMentor"] != null)
+            {
+                ViewBag.errorMentor = TempData["errorMentor"];
+            }
+            if (TempData["errorState"] != null)
+            {
+                ViewBag.errorState = TempData["errorState"];
+            }
+
             return View(user);
         }
-
-        public ActionResult GetMentors(string SuperPower, string Personality, string SuperName, string HeroVillain)
-        {
-            #region Drop-down for superpowers
-            List<Ability> list = ORM.Abilities.ToList();
-            List<string> powerNames = new List<string>();
-
-            foreach (Ability power in list)
-            {
-                powerNames.Add(power.Ability1);
-            }
-
-            ViewBag.PowerNames = powerNames;
-            #endregion
-
-            #region Drop-down for personalities
-            List<Mentor> mentors = ORM.Mentors.ToList();
-            List<string> personalities = new List<string>();
-            List<string> personalitiesDistinct = new List<string>();
-
-
-            foreach (Mentor men in mentors)
-            {
-                personalities.Add(men.Personality);
-                personalitiesDistinct = personalities.Distinct().ToList();
-            }
-
-            ViewBag.Personalities = personalitiesDistinct;
-
-            #endregion
-
-
-            AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
-            ORM.AspNetUsers.Attach(user);
-            user.SuperPower = SuperPower;
-            user.SuperName = SuperName;
-            user.Personality = Personality;
-            user.C_Hero_Villain_ = bool.Parse(HeroVillain);
-            ORM.SaveChanges();
-
-            ViewBag.User = user;
-
-            List<Mentor> badMentors = ORM.Mentors.Where(u => u.Hero_Villain == false).ToList();
-            List<Mentor> goodMentors = ORM.Mentors.Where(u => u.Hero_Villain == true).ToList();
-
-            List<Mentor> m;
-
-            if (HeroVillain == "true")
-            {
-
-                m = goodMentors;
-            }
-            else
-            {
-
-                m = badMentors;
-            }
-
-            return View("UserProfile", m);
-        }
-
-        
-
 
         public ActionResult Test()
         {
@@ -247,32 +209,108 @@ namespace FinalProject.Controllers
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             ORM.AspNetUsers.Attach(user);
-            user.Personality = personality;
-            ORM.SaveChanges();
+            List<Mentor> mentors = ORM.Mentors.ToList();
+            List<string> personalities = new List<string>();
+            List<string> personalitiesDistinct = new List<string>();
+
+            foreach (Mentor men in mentors)
+            {
+                personalities.Add(men.Personality);
+            }
+            personalitiesDistinct = personalities.Distinct().ToList();
+
+            if(personalitiesDistinct.Contains(personality))
+            {
+                user.Personality = personality;
+                ORM.SaveChanges();
+                return RedirectToAction("UserInfo");
+            }
+
+            TempData["errorPersonality"] = "Not a valid personality, Please choose again!";
             return RedirectToAction("UserInfo");
         }
         public ActionResult SaveSuperPower(string superPower)
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             ORM.AspNetUsers.Attach(user);
-            user.SuperPower = superPower;
-            ORM.SaveChanges();
+
+            List<Ability> list = ORM.Abilities.ToList();
+            List<string> powerNames = new List<string>();
+
+            foreach (Ability power in list)
+            {
+                powerNames.Add(power.Ability1);
+            }
+
+            if (powerNames.Contains(superPower))
+            {
+                user.SuperPower = superPower;
+                ORM.SaveChanges();
+                return RedirectToAction("UserInfo");
+            }
+
+            TempData["errorSuperPower"] = "Not a valid superpower, Please choose again!";
             return RedirectToAction("UserInfo");
         }
         public ActionResult SaveAlliance(string HeroVillain)
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             ORM.AspNetUsers.Attach(user);
-            user.C_Hero_Villain_ = bool.Parse(HeroVillain);
-            ORM.SaveChanges();
+
+            if(bool.Parse(HeroVillain) == true || bool.Parse(HeroVillain) == false)
+            {
+                user.C_Hero_Villain_ = bool.Parse(HeroVillain);
+                ORM.SaveChanges();
+                return RedirectToAction("UserInfo");
+            }
+            
+            TempData["errorAlliance"] = "Not a valid alliance, Please choose again!";
             return RedirectToAction("UserInfo");
         }
         public ActionResult SaveMentor(string Id)
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             ORM.AspNetUsers.Attach(user);
-            user.MentorId = int.Parse(Id);
-            ORM.SaveChanges();
+            List<Mentor> mentors = ORM.Mentors.ToList();
+            List<string> mentorIds = new List<string>();
+
+            foreach (Mentor mentor in mentors)
+            {
+                mentorIds.Add(mentor.Id.ToString());
+            }
+
+            if (mentorIds.Contains(Id))
+            {
+                Mentor current = ORM.Mentors.Find(Id);
+                if((bool)user.C_Hero_Villain_ == true)
+                {
+                    if ((bool)current.Hero_Villain == false)
+                    {
+                        user.MentorId = null;
+                    }
+                    else
+                    {
+                        user.MentorId = int.Parse(Id);
+                        ORM.SaveChanges();
+                        return RedirectToAction("UserInfo");
+                    }
+                }
+                else if((bool)user.C_Hero_Villain_ == false)
+                {
+                    if ((bool)current.Hero_Villain == true)
+                    {
+                        user.MentorId = null;
+                    }
+                    else
+                    {
+                        user.MentorId = int.Parse(Id);
+                        ORM.SaveChanges();
+                        return RedirectToAction("UserInfo");
+                    }
+                }
+            }
+
+            TempData["errorMentor"] = "Not a valid mentor, Please choose again!";
             return RedirectToAction("UserInfo");
         }
     }

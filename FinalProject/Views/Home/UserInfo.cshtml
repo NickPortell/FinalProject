@@ -4,6 +4,11 @@
 @{
     ViewBag.Title = "UserInfo";
 }
+<h2>@ViewBag.errorPersonality</h2>
+<h2>@ViewBag.errorSuperPower</h2>
+<h2>@ViewBag.errorAlliance</h2>
+<h2>@ViewBag.errorMentor</h2>
+<h2>@ViewBag.errorState</h2>
 
 <body>
     <div style="position:relative" id="foreground">
@@ -23,15 +28,15 @@
             <form action="../Home/SaveSuperName" method="post" id="Profile6">
                 Super Name:
                 <br />
-                    @if (Model.SuperName != null)
-                    {
-                        <input id="name" type="Text" name="superName" placeholder="@Model.SuperName" value="@Model.SuperName" />
-                    }
-                    else
-                    {
-                        <input id="name" type="Text" name="superName" placeholder="Enter your SUPERNAME!" />
-                    }
-                    <input type="submit" value="Select" class="btn-success" />
+                @if (Model.SuperName != null)
+                {
+                    <input id="name" type="Text" name="superName" placeholder="@Model.SuperName" value="@Model.SuperName" />
+                }
+                else
+                {
+                    <input id="name" type="Text" name="superName" placeholder="Enter your SUPERNAME!" />
+                }
+                <input type="submit" value="Select" class="btn-success" />
             </form>
         </div>
         <div style="position:absolute; left:82px; top:388px">
@@ -88,40 +93,40 @@
                     <label for="FALSE">Villain</label>
                     <input id="FALSE" type="radio" name="HeroVillain" value="false" />
                 }
-                <input type="submit" value="Select" class="btn-success" />
+                <input id="allianceBtn" type="submit" value="Select" class="btn-success" />
             </form>
         </div>
         <div style="position:absolute; left:82px; top:517px">
             @if (Model.C_Hero_Villain_ != null)
             {
-            <form action="../Home/SaveMentor" method="post" id="Profile5">
-                Mentor:
-                <br />
-                @if (ViewBag.Mentors != null)
-                {
-                    if (Model.Mentor == null)
+                <form action="../Home/SaveMentor" method="post" id="Profile5">
+                    Mentor:
+                    <br />
+                    @if (ViewBag.Mentors != null)
                     {
-                        <select name="Id" form="Profile5">
-                            @for (int i = 0; i < ViewBag.Mentors.Count; i++)
-                            {
-                                <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
-                            }
-                        </select>
-                        <input type="submit" value="Select" class="btn-success" />
+                        if (Model.Mentor == null)
+                        {
+                            <select name="Id" form="Profile5">
+                                @for (int i = 0; i < ViewBag.Mentors.Count; i++)
+                                {
+                                    <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
+                                }
+                            </select>
+                            <input type="submit" value="Select" class="btn-success" />
+                        }
+                        else
+                        {
+                            <label for="mentor">@Model.Mentor.Name</label>
+                            <select name="Id" form="Profile5" required id="mentor">
+                                @for (int i = 0; i < ViewBag.Mentors.Count; i++)
+                                {
+                                    <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
+                                }
+                            </select>
+                            <input type="submit" value="Select" class="btn-success" />
+                        }
                     }
-                    else
-                    {
-                        <label for="mentor">@Model.Mentor.Name</label>
-                        <select name="Id" form="Profile5" required id="mentor">                           
-                            @for (int i = 0; i < ViewBag.Mentors.Count; i++)
-                            {
-                                <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
-                            }
-                        </select>
-                        <input type="submit" value="Select" class="btn-success" />
-                    }
-                }
-            </form>
+                </form>
             }
             <p>@ViewBag.Error</p>
         </div>
@@ -141,7 +146,7 @@
                 else
                 {
                     <label for="person">@Model.Personality</label>
-                    <select id="person" name="personality" form="Profile3">                       
+                    <select id="person" name="personality" form="Profile3">
                         @for (int i = 0; i < ViewBag.Personalities.Count; i++)
                         {
                             <option value="@ViewBag.Personalities[i]">@ViewBag.Personalities[i]</option>
@@ -167,7 +172,7 @@
                 else
                 {
                     <label for="StateId">@Model.StateId</label>
-                    <select id="stateId" name="state" form="Profile4">                        
+                    <select id="stateId" name="state" form="Profile4">
                         @for (int i = 0; i < ViewBag.StateNames.Count; i++)
                         {
                             <option value="@ViewBag.StateNames[i]">@ViewBag.StateNames[i]</option>
@@ -179,9 +184,12 @@
         </div>
     </div>
     <div id="button1">
-        <form action="../Algorithm/Index" method="post">
-            <button type="submit" value="@Model">Suggested Franchise</button>
-        </form>
+        @if (Model.SuperName != null && Model.SuperPower != null && Model.Personality != null)
+        {
+            <form action="../Algorithm/Index" method="post">
+                <button type="submit" value="@Model">Suggested Franchise</button>
+            </form>
+        }
     </div>
 </body>
 
@@ -191,7 +199,7 @@
         background-image: url('../../Pictures/gothamblue.jpg');
         height: 100%;
         background-size: cover;
-        color:darkorange;
+        color: darkorange;
     }
 
     .container body-content {
@@ -211,10 +219,11 @@
         position: relative;
         background-size: contain;
         display: inline-block;
-        float:left;
+        float: left;
         width: 500px;
         margin-bottom: 0;
     }
+
     #foreground {
         margin-left: 25%;
         margin-right: auto;
@@ -226,6 +235,7 @@
         width: 240px;
         height: 220px;
     }
+
     .navbar-inverse .navbar-nav > li > a {
         color: midnightblue;
         background-color: deepskyblue;
@@ -233,9 +243,10 @@
         border-style: groove;
         font-family: 'Copperplate Gothic';
     }
-    #button1{
-        position:absolute;
-        left:187px;
-        width:93px;
+
+    #button1 {
+        position: absolute;
+        left: 187px;
+        width: 93px;
     }
 </style>
