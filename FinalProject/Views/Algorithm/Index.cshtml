@@ -15,6 +15,20 @@
 
                 <img id="foregroundPic" src=@ViewBag.Img alt="@ViewBag.State.State" />
             </p>
+            <div style="left:100px; top:100px; position:relative;">
+                <form action="../Algorithm/SaveFranchise" method="post">
+                    <input type="hidden" name="location" value="@ViewBag.State.State" />
+                    <p>Suggested mentors for your line of work: </p>
+                    @foreach (var mentor in ViewBag.Mentors)
+                    {
+                        <label for="@mentor">@mentor </label>
+                        <input id="@mentor" type="radio" name="mentorName" value="@mentor" />
+                        <br />
+                    }
+                    <input type="submit" value="Get Suggested Franchise" class="btn-default" />
+                </form>
+
+            </div>
             <div class="table1">
                 <h3 style="padding-top:23%">@ViewBag.Message</h3>
                 <table class="table">
@@ -23,15 +37,14 @@
                         <th>Description</th>
                         <th>Price</th>
                         <th>Suggested Use</th>
-                        @*<th>stuff</th>*@
                     </tr>
                     @foreach (var item in ViewBag.SuggestedItems)
                     {
 
                         int owned = 0;
-                        foreach(var inv in ViewBag.Inventory)
+                        foreach (var inv in ViewBag.Inventory)
                         {
-                            if(inv.ItemId == item.Id)
+                            if (inv.ItemId == item.Id)
                             {
                                 owned = inv.Quantity;
                             }
@@ -40,29 +53,13 @@
                             <td>@item.ItemName Owned: @owned</td>
                             <td>@item.Description</td>
                             <td>$@item.Cost.ToString("0.00") <form action="../Algorithm/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
-                            @*<td>@item.Availability</td>*@
                             <td>@item.Crime</td>
                         </tr>
 
                     }
                 </table>
             </div>
-
         }
-
-    </div>
-    <div>
-        <form action="../Algorithm/SaveFranchise" method="post">
-            <input type="hidden" name="location" value="@ViewBag.State.State" />
-            <p>Suggested mentors for your line of work: </p>
-            @foreach (var mentor in ViewBag.Mentors)
-            {
-                <label for="@mentor">@mentor </label>
-                <input id="@mentor" type="radio" name="mentorName" value="@mentor" />
-            }
-            <input type="submit" value="Get Suggested Franchise" class="btn-default" />
-        </form>
-
     </div>
 </body>
 <style>

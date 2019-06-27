@@ -47,8 +47,22 @@ namespace FinalProject.Controllers
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
             ORM.AspNetUsers.Attach(user);
-            user.StateId = state;
-            ORM.SaveChanges();
+            List<Crime> list = ORM.Crimes.ToList();
+            List<string> stateNames = new List<string>();
+
+            foreach (Crime s in list)
+            {
+                stateNames.Add(s.State);
+            }
+
+            if(stateNames.Contains(state))
+            {
+                user.StateId = state;
+                ORM.SaveChanges();
+                return RedirectToAction("../Home/UserInfo");
+            }
+
+            TempData["errorState"] = "Not a valid location, Please choose again!";
             return RedirectToAction("../Home/UserInfo");
         }
     }
