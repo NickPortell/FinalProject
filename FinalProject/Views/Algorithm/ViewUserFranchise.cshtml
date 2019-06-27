@@ -15,89 +15,119 @@
     Crime crime = ORM.Crimes.Find(Model.StateId);
     AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
     ViewBag.UserItems = ORM.UserItems.Where(uI => uI.UserId == user.Id).ToList();
-
-    <h3 id="person" style="text-align:center">@Model.SuperName's Franchise</h3>
-    <body>
-        <div style="position:relative" id="foreground">
-            <img id="foregroundPic" src="..\Pictures\secret2.png" alt="yooooo" />
-            <div id="statePic" style="position:absolute; left:208px; top:47px;">
-                <img id="statepic" src="@ViewBag.Img" alt="NOT SHOWING" />
-            </div>
-            <div style="position:absolute; left:82px; top:348px">
-                Mentor: @Model.Mentor.Name
-            </div>
-            <div style="position:absolute; left:82px; top:384px">
-                Location: @Model.StateId
-            </div>
-            <fieldset id="stats">
-                <div id="stats" class="table" style="position:absolute; left:550px; top:300px">
-                    **Location Details**
-                    <table>
-                        @foreach (var column in crime.GetType().GetProperties())
-                        {
-                            if (column.Name != "State" && column.Name != "AspNetUsers" && column.Name != "Rape_Revised")
-                            {
-                                <tr>
-                                    <td>@column.Name: @column.GetValue(crime)</td>
-                                </tr>
-                            }
-                        }
-                    </table>
-                </div>
-            </fieldset>
-
+    string statePic = user.StateId + ".jpg";
+<body>
+    <div id="tablet">
+        <img id="statepic" src="~/Pictures/StateImages/@statePic" />
+        <h2 style="text-align:center; transform: translateY(-5.8em) translateX(1.5em);">@user.SuperName's Super Franchise</h2>
+        <table id="inv">
+            @foreach (UserItem item in ViewBag.Inventory)
+            {
+                string pic = string.Join("", item.Item.ItemName.Split(' '));
+                pic = pic + ".jpg";
+                <tr>
+                    <td><img src="~/Pictures/Items/@pic" /></td>
+                    <td>@item.Item.ItemName</td>
+                    <td>@item.Quantity</td>
+                </tr>
+            }
+        </table>
+        @{
+            double worth = 0;
+            foreach (UserItem item in ViewBag.Inventory)
+            {
+                worth += (double)(item.Item.Cost * item.Quantity);
+            }
+        }
+        <div id="franchiseinfo">
+            <h3>Net worth: $@worth</h3>
+            <h3>Current funds: $@Convert.ToDouble(user.Bitcoin).ToString("0.00")</h3>
         </div>
-        <fieldset id="stats">
-            <div id="stats" class="table" style="position:absolute; left:15px; top:350px">
-                **Current Inventory**
-                <table>
-                    @foreach (UserItem item in ViewBag.UserItems)
+        <div id="mentor">
+            <h3>Mentor - @user.Mentor.Name</h3>
+            <h3>Personality - @user.Mentor.Personality</h3>
+            <h3>Ability - @user.Mentor.Ability1</h3>
+            <h3>Network size - @user.Mentor.AspNetUsers.Count franchise(s)</h3>
+        </div>
+            <table id="state">
+                <caption><h3>@crime.State # of crime reports</h3></caption>
+                @foreach (var column in crime.GetType().GetProperties())
+                {
+                    if (column.Name != "State" && column.Name != "AspNetUsers" && column.Name != "Rape_Revised")
                     {
-                        string pic = string.Join("", item.Item.ItemName.Split(' '));
-                        pic = pic + ".jpg";
-                        <tr class="container">
-                            <td><img class="image" id="Img" src="~/Pictures/Items/@pic" style="width:5em; height:5em;" /></td>
-                            <td>@item.Item.ItemName </td>
-                            <td>@item.Quantity</td>
+                        <tr>
+                            <td>@column.Name: @column.GetValue(crime)</td>
                         </tr>
                     }
-                </table>
-            </div>
-        </fieldset>
-    </body>
+                }
+            </table>
+    </div>
+</body>
 }
-<style>
 
+<style>
     html, body {
         background-image: url('../../Pictures/gothamblue.jpg');
         height: 100%;
         background-size: cover;
         color: darkorange;
+        background-color: black;
+        background-repeat: no-repeat;
+        margin-top:1em;
     }
 
-    .container body-content {
-        position: fixed;
+    #inv{
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: block !important;
+    height: 25.2em !important;
+    width:25em;
+    transform: translateX(17.5%) translateY(2%)
     }
 
-    #foregroundPic {
-        position: relative;
-        background-size: contain;
-        display: inline-block;
-        float: left;
-        width: 500px;
-        margin-bottom: 0;
+    #inv img{
+        width:10em;
+        height:10em;
     }
 
-    #foreground {
-        margin-left: 25%;
-        margin-right: auto;
+
+    #franchiseinfo {
+        display: block !important;
+        height: 25.7em !important;
+        transform: translateX(40%) translateY(-140%)
     }
 
+    #tablet {
+        background-image: url(../../Pictures/tablet2.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        width:75em;
+        height:50em;
+    }
     #statepic {
-        transform: rotate(6deg);
         z-index: 101;
-        width: 240px;
+        width: 350px;
         height: 220px;
+        transform:translateX(17%) translateY(28.5%)
+    }
+
+    #state {
+        background-color: rgba(0,0,0,.1);
+        height: 80% !important;
+        display: block;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        width: 15em;
+        transform: translateX(360%) translateY(-230%);
+    }
+
+    #mentor{
+        height: 25em;
+        width: 20em;
+        background-color: rgba(0,0,0,.1);
+        transform:translateX(158%) translateY(-218%);
+        text-align:center;
+        padding-top:5%;
     }
 
     .navbar-inverse .navbar-nav > li > a {
@@ -105,16 +135,5 @@
         background-color: deepskyblue;
         border-bottom-color: deepskyblue;
         border-style: groove;
-    }
-
-    #stats {
-        background-color: deepskyblue;
-        color: black;
-        width: 250px;
-        text-align: left;
-        border: solid black 3px;
-    }
-    #person{
-      
     }
 </style>
