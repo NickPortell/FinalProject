@@ -171,6 +171,7 @@ namespace FinalProject.Controllers
         public ActionResult ViewUserFranchise()
         {
             AspNetUser user = ORM.AspNetUsers.Find(User.Identity.GetUserId());
+            ViewBag.Inventory = Inventory();
             ViewBag.Img = "..\\Pictures\\StateImages\\"+ user.StateId + ".jpg";
             return View(user);
         }
